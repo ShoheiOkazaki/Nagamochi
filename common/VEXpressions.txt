@@ -1,0 +1,102 @@
+#
+# Attribute Wrangle
+#
+attribwrangle/snippet
+	[Nagamochi] promote attr from same name
+    if (inprimgroup(0,"inside",@primnum) == 1){
+            int a = 0;
+            while(1){
+                int match_prim = findattribval(0, "prim", "name", s@name,a);
+                string path = prim(0,"path",match_prim);
+                if (path == ""){
+                    a +=1;
+                    }
+                else{
+                    s@path = path;
+                    break;
+                    }
+                }      
+        }
+
+attribwrangle/snippet
+    [Nagamochi] curveu
+    //run over 'prim'
+    float curvelength = primintrinsic(0, 'measuredperimeter', @primnum);
+
+    int vertices[] = primvertices(0, @primnum);
+    addattrib(0,'point','curveu',0.0);
+    float lengthfromfirst = 0.0;
+
+    for(int i=1; i<len(vertices); i++)
+    {
+        int pt1 = vertexpoint(0,vertices[i-1]);
+        int pt2 = vertexpoint(0,vertices[i]);
+        vector p1 = point(0, 'P', pt1);
+        vector p2 = point(0, 'P', pt2);
+        lengthfromfirst += distance(p1, p2);
+        float curveu = lengthfromfirst / curvelength;
+        setpointattrib(0, 'curveu', pt2, curveu);
+    }
+
+
+attribwrangle/snippet
+    [Nagamochi] pop emit with linear motion of uniform acceleration
+    //run over 'points'
+    int pid = @ptnum;
+    @age = rand(pid)*@Timeinc;
+
+    vector g = set(0,-9.8,0);
+    @P += g*pow(@age,2)*0.5;
+    @v += g*@age;
+
+
+attribwrangle/snippet
+    [Nagamochi] move packed pivot to under the pieces
+    //run over 'points'
+    float bounds[] = primintrinsic(0,'packedbounds',@primnum);
+    vector new_pivot = set(@P.x, bounds[2], @P.z);
+
+    @P += new_pivot-@P;
+    setprimintrinsic(0,'pivot',@primnum,new_pivot,'set');
+
+attribwrangle/snippet
+    [Nagamochi] push out of volume
+    float d_vol_sample;
+    vector d_vol_grad;
+
+    for ( int n=0; n<chi('iteration'); n++){
+        d_vol_sample = volumesample(1,'surface',@P);
+        d_vol_grad   = normalize(volumegradient(1,'surface',@P));
+        
+        if(d_vol_sample<=0){
+            @P -= d_vol_grad * d_vol_sample;
+            }
+        
+        }
+
+attribwrangle/snippet
+    [Nagamochi] create random float val using ramp
+    float seed = chf('seed');
+    float dmin = chf('destmin');
+    float dmax = chf('destmax');
+
+    int pt = @id;
+    float _value;
+
+    _value = rand(pt + seed);
+    _value = chramp("ramp",_value);
+    _value = fit01(_value, dmin, dmax);
+
+    f@pscale = _value;
+
+attribwrangle/snippet
+    [Nagamochi] random orient
+    vector usamplerw = rand(@ptnum);
+    p@orient = sample_orientation_cone({ 1, 0, 0, 0 }, radians(180), usamplerw);
+
+
+attribwrangle/snippet
+    [Nagamochi] decayed pscale by nage
+    @pscale *= chramp('nage',1.0-@nage);
+
+

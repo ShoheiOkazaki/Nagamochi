@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="nm_main" label="Nagamochi">
+    <memberTool name="nm_main_openW"/>
+    <memberTool name="nm_main_openH"/>
+    <memberTool name="nm_main_saveInc"/>
+    <memberTool name="nm_main_switchOpenCL"/>
+    <memberTool name="nm_main_renderDefaSet"/>
+    <memberTool name="nm_main_launchMplay"/>
+  </toolshelf>
+
+  <tool name="nm_main_renderDefaSet" label="Render Default" icon="hicon:/SVGIcons.index?ROP_mantra.svg">
+    <script scriptType="python"><![CDATA[import render_defalut_set as rds
+reload(rds)
+
+selRops = hou.selectedNodes()
+
+rds.setDefalut(selRops)]]></script>
+  </tool>
+
+  <tool name="nm_main_openW" label="Open W" icon="hicon:/SVGIcons.index?BUTTONS_folder.svg">
+    <helpText><![CDATA["""Open the folder of $HIP."""]]></helpText>
+    <script scriptType="python"><![CDATA[import openFolders
+reload(openFolders)
+openFolders.openFolderW()]]></script>
+  </tool>
+
+  <tool name="nm_main_openH" label="Open H" icon="hicon:/SVGIcons.index?BUTTONS_folder.svg">
+    <helpText><![CDATA["""Open the folder of $HOUDINI_USER_PREF_DIR."""]]></helpText>
+    <script scriptType="python"><![CDATA[import openFolders
+reload(openFolders)
+openFolders.openFolderH()]]></script>
+  </tool>
+
+  <tool name="nm_main_switchOpenCL" label="OpenCL Switch" icon="hicon:/SVGIcons.index?MISC_uploading.svg">
+    <helpText><![CDATA["""Change all OpenCL parms of all dop nodes in the selected DOP network."""
+]]></helpText>
+    <script scriptType="python"><![CDATA[import openClSwitcher
+reload(openClSwitcher)
+openClSwitcher.run()]]></script>
+  </tool>
+
+  <tool name="nm_main_launchMplay" label="Mplay/RV From Node" icon="hicon:/SVGIcons.index?NETWORKS_rop.svg">
+    <helpText><![CDATA["""Select render node and Click -> Mplay (Ctrl + Click -> RV)"""]]></helpText>
+    <script scriptType="python"><![CDATA[import launchMplayFromNode
+reload(launchMplayFromNode)
+launchMplayFromNode.launch(kwargs['ctrlclick'])]]></script>
+  </tool>
+
+  <tool name="nm_main_saveInc" label="Save+" icon="hicon:/SVGIcons.index?BUTTONS_import_library.svg">
+    <script scriptType="python"><![CDATA[import saveHipIncrementVersion
+reload(saveHipIncrementVersion)
+
+saveHipIncrementVersion.run()]]></script>
+  </tool>
+</shelfDocument>

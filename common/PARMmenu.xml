@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menuDocument>
+    <menu>
+    <separatorItem></separatorItem>
+
+
+
+    <subMenu id="parm_snippets">
+        <label>[Nagamochi] Snippets</label>
+
+            <scriptMenuStripDynamic id="myUniqueDynamicStripId">
+                <contentsScriptCode><![CDATA[
+import nodeSnippets.parm_snippets as parm_snippets
+reload(parm_snippets)
+return parm_snippets.getList(kwargs["parms"])
+                ]]></contentsScriptCode>
+                <scriptCode><![CDATA[
+import nodeSnippets.parm_snippets as parm_snippets
+reload(parm_snippets)
+parm_snippets.setParms(kwargs["parms"],kwargs["selectedtoken"])
+                ]]></scriptCode>
+            </scriptMenuStripDynamic>
+
+    </subMenu>
+
+
+    <subMenu id="clipboard">
+        <label>[Nagamochi] to Clipboard</label>
+        <scriptItem id="copy_parmfullpath">
+            <label>Parm-Fullpath</label>
+            <scriptCode><![CDATA[
+import hou
+parm = kwargs.get("parms", None)[0]
+hou.ui.copyTextToClipboard(parm.path())
+                ]]></scriptCode>
+        </scriptItem>
+
+        <scriptItem id="copy_parmname">
+            <label>Parm-Name</label>
+            <scriptCode><![CDATA[
+import hou
+parm = kwargs.get("parms", None)[0]
+hou.ui.copyTextToClipboard(parm.name())
+                ]]></scriptCode>
+        </scriptItem>
+
+        <scriptItem id="copy_parmval">
+            <label>Parm-Value</label>
+            <scriptCode><![CDATA[
+parm = kwargs.get("parms", None)[0]
+hou.ui.copyTextToClipboard(parm.evalAsString())
+                ]]></scriptCode>
+        </scriptItem>
+    </subMenu>
+
+    <subMenu id="changeDescriptiveParm">
+        <label>[Nagamochi] Change Descriptive Parm</label>
+
+        <scriptItem>
+            <label>Set</label>
+            <scriptCode><![CDATA[
+import nodeSnippets.changeDescriptiveParm as changeDescriptiveParm
+reload(changeDescriptiveParm)
+changeDescriptiveParm.doit(kwargs["parms"],"set")
+                ]]></scriptCode>
+        </scriptItem>
+
+        <scriptItem>
+            <label>Clear</label>
+                <scriptCode><![CDATA[
+import nodeSnippets.changeDescriptiveParm as changeDescriptiveParm
+reload(changeDescriptiveParm)
+changeDescriptiveParm.doit(kwargs["parms"],"clear")
+                ]]></scriptCode>
+        </scriptItem>
+        </subMenu>
+
+
+
+
+    </menu>
+</menuDocument>

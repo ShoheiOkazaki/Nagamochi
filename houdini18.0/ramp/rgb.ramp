@@ -1,0 +1,174 @@
+{
+	"blackbody": {
+	"type": "rgb",
+	"label": "Black Body",
+	"ramp": {
+		"colortype": "RGB",
+		"points": [
+		4,
+		{
+			"t": 0,
+			"rgba": [0,0,0,1],
+			"basis": "linear"
+		},
+		{
+			"t": 0.333330005,
+			"rgba": [1,0,0,1],
+			"basis": "linear"
+		},
+		{
+			"t": 0.666670024,
+			"rgba": [1,1,0,1],
+			"basis": "linear"
+		},
+		{
+			"t": 1,
+			"rgba": [1,1,1,1],
+			"basis": "linear"
+		}
+		]
+	}
+	},
+	"mono": {
+	"type": "rgb",
+	"label": "Grayscale",
+	"ramp": {
+		"colortype": "RGB",
+		"points": [
+		2,
+		{
+			"t": 0,
+			"rgba": [0,0,0,1],
+			"basis": "linear"
+		},
+		{
+			"t": 1,
+			"rgba": [1,1,1,1],
+			"basis": "linear"
+		}
+		]
+	}
+	},
+	"false": {
+	"type": "rgb",
+	"label": "Infra-Red",
+	"ramp": {
+		"colortype": "RGB",
+		"points": [
+		5,
+		{
+			"t": 0,
+			"rgba": [0.2,0,1,1],
+			"basis": "linear"
+		},
+		{
+			"t": 0.25,
+			"rgba": [0,0.850000024,1,1],
+			"basis": "linear"
+		},
+		{
+			"t": 0.5,
+			"rgba": [0,1,0.100000001,1],
+			"basis": "linear"
+		},
+		{
+			"t": 0.75,
+			"rgba": [0.949999988,1,0,1],
+			"basis": "linear"
+		},
+		{
+			"t": 1,
+			"rgba": [1,0,0,1],
+			"basis": "linear"
+		}
+		]
+	}
+	},
+	"bipartite": {
+	"type": "rgb",
+	"label": "Two-Tone",
+	"ramp": {
+		"colortype": "RGB",
+		"points": [
+		5,
+		{
+			"t": 0,
+			"rgba": [0,1,1,1],
+			"basis": "linear"
+		},
+		{
+			"t": 0.499900013,
+			"rgba": [0,0,1,1],
+			"basis": "linear"
+		},
+		{
+			"t": 0.5,
+			"rgba": [1,0,1,1],
+			"basis": "linear"
+		},
+		{
+			"t": 0.500100017,
+			"rgba": [1,0,0,1],
+			"basis": "linear"
+		},
+		{
+			"t": 1,
+			"rgba": [1,1,0,1],
+			"basis": "linear"
+		}
+		]
+	}
+	},
+	"pink": {
+	"type": "rgb",
+	"label": "White to Red",
+	"ramp": {
+		"colortype": "RGB",
+		"points": [
+		2,
+		{
+			"t": 0,
+			"rgba": [1,1,1,1],
+			"basis": "linear"
+		},
+		{
+			"t": 1,
+			"rgba": [1,0,0,1],
+			"basis": "linear"
+		}
+		]
+	}
+	},
+
+	"n_ember": {
+	"type": "rgb",
+	"label": "[Nagamochi] Ember",
+	"ramp": {
+		"colortype": "RGB",
+		"points":[
+		4,
+		{
+			"t": 0.0,
+			"rgba": [0.5,0.25,0.0,1],
+			"basis": "Linear"
+		},
+		{
+			"t": 0.457,
+			"rgba": [0.546,0.048,0.0,1],
+			"basis": "Linear"
+		},
+		{
+			"t": 0.868,
+			"rgba": [0.163,0.0,0.0,1],
+			"basis": "Linear"
+		},
+		{
+			"t": 1.0,
+			"rgba": [0.0,0.0,0.0,1],
+			"basis": "Linear"
+		}
+	]
+	}
+	},
+
+}

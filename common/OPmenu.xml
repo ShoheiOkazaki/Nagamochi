@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menuDocument>
+	<menu>
+	<separatorItem></separatorItem>
+
+		<!-- Create Fetch  --> 
+		<scriptItem id="opmenu.mega_create_fetch">			
+			<context>
+			<expression><![CDATA[
+type = kwargs["node"].type().nameWithCategory()
+name = kwargs["node"].name()
+if type.startswith("Sop/nmFileCache"):return True
+return False
+]]></expression>
+			</context>
+			<label>[Nagamochi] Create Fetch to ROP</label>
+			<scriptCode>
+				<![CDATA[
+import nmCreateFetch
+reload(nmCreateFetch)
+n = kwargs["node"]
+nmCreateFetch.main(nodes=[n])
+]]></scriptCode>
+		</scriptItem>	
+			
+		
+<subMenu id="opmenu.mega_create_ctrl_read">
+	<context>
+		<expression><![CDATA[
+type = kwargs["node"].type().nameWithCategory()
+if type.startswith("Sop/nmFileCache") or type.startswith("Sop/filecache"):return True
+return False
+]]></expression>
+		</context>
+	<label>[Nagamochi] Create control node for this ReadFile</label>
+
+	<scriptItem id="opmenu.mega_create_timeblend">
+		
+		<label>Time Blend</label>
+		<scriptCode>
+			<![CDATA[
+import createCtrlReadFile4Cache
+reload(createCtrlReadFile4Cache)
+n = kwargs["node"]
+createCtrlReadFile4Cache.run(n,0)
+]]></scriptCode>
+		</scriptItem>
+	<scriptItem id="opmenu.mega_create_switchoff">
+		<label>Switch Off</label>
+		<scriptCode>
+			<![CDATA[
+import createCtrlReadFile4Cache
+reload(createCtrlReadFile4Cache)
+n = kwargs["node"]
+createCtrlReadFile4Cache.run(n,1)
+]]></scriptCode>
+		</scriptItem>
+	</subMenu>
+
+
+	</menu>
+</menuDocument>

@@ -20,7 +20,7 @@ Houdini 17.0 or Higher
 - Append the path to the Ngamochi folder like a following example to your `houdini.env` file.
 
 ```bash
-NAGAMOCHI = PLACE_TO_INSTALL/nagamochi
+NAGAMOCHI = PLACE_TO_INSTALL
 HOUDINI_PATH = $NAGAMOCHI/common:$NAGAMOCHI/houdini$HOUDINI_MAJOR_RELEASE.$HOUDINI_MINOR_RELEASE:&
 ```
 

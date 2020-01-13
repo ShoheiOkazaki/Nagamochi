@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="nm_support" label="Nagamochi Support">
+    <memberTool name="nm_sop_source_smoke"/>
+    <memberTool name="nm_source_burn"/>
+    <memberTool name="nm_sop_dopimport_pyro"/>
+    <memberTool name="nm_sop_dopimport_rbdbullet"/>
+    <memberTool name="tool_1"/>
+  </toolshelf>
+
+  <tool name="nm_source_burn" label="Source Fire" icon="SHELF_fire">
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Support</toolSubmenu>
+    <script scriptType="python"><![CDATA[import nmSupport.sop_dopsource as dopsource
+reload(dopsource)
+sels = hou.selectedNodes()
+
+if len(sels)>0:
+    n = sels[0]
+    dopsource.run(n,simtype='burn')]]></script>
+  </tool>
+
+  <tool name="nm_sop_source_smoke" label="Source Smoke" icon="SHELF_smoke_heavy">
+    <toolMenuContext name="viewer">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Support</toolSubmenu>
+    <script scriptType="python"><![CDATA[import nmSupport.sop_dopsource as dopsource
+reload(dopsource)
+sels = hou.selectedNodes()
+
+
+if len(sels)>0:
+    n = sels[0]
+    dopsource.run(n,simtype='billowySmoke')
+else:
+    text = 'Please select a node'
+    hou.ui.displayMessage(text, buttons=("Yes",), severity=hou.severityType.Message, title="Ngamochi Support")
+
+]]></script>
+  </tool>
+
+  <tool name="nm_sop_dopimport_pyro" label="DopImport Pyro" icon="hicon:/SVGIcons.index?SOP_object_merge.svg">
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Support</toolSubmenu>
+    <script scriptType="python"><![CDATA[import nmSupport.sop_dopimport as dopimport
+reload(dopimport)
+sels = hou.selectedNodes()
+
+n = None
+if len(sels)>0:
+    n = sels[0]
+dopimport.run(n,simtype='pyro')]]></script>
+  </tool>
+
+  <tool name="nm_sop_dopimport_rbdbullet" label="DopImport RBD Bullet" icon="hicon:/SVGIcons.index?SOP_object_merge.svg">
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Support</toolSubmenu>
+    <script scriptType="python"><![CDATA[import nmSupport.sop_dopimport as dopimport
+reload(dopimport)
+sels = hou.selectedNodes()
+
+n = None
+if len(sels)>0:
+    n = sels[0]
+dopimport.run(n,simtype='rbd')]]></script>
+  </tool>
+</shelfDocument>
