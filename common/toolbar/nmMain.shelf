@@ -9,6 +9,7 @@
     <memberTool name="nm_main_openW"/>
     <memberTool name="nm_main_openH"/>
     <memberTool name="nm_main_saveInc"/>
+    <memberTool name="nm_main_creatNetWorkBoxSet"/>
     <memberTool name="nm_main_switchOpenCL"/>
     <memberTool name="nm_main_renderDefaSet"/>
     <memberTool name="nm_main_launchMplay"/>
@@ -57,5 +58,12 @@ launchMplayFromNode.launch(kwargs['ctrlclick'])]]></script>
 reload(saveHipIncrementVersion)
 
 saveHipIncrementVersion.run()]]></script>
+  </tool>
+
+  <tool name="nm_main_creatNetWorkBoxSet" label="Create NetWorkBoxSet" icon="hicon:/SVGIcons.index?BUTTONS_network_box.svg">
+    <script scriptType="python"><![CDATA[import createNetworkBoxSet
+reload(createNetworkBoxSet)
+
+createNetworkBoxSet.run()]]></script>
   </tool>
 </shelfDocument>

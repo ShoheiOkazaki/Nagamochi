@@ -10,7 +10,6 @@
     <memberTool name="nm_source_burn"/>
     <memberTool name="nm_sop_dopimport_pyro"/>
     <memberTool name="nm_sop_dopimport_rbdbullet"/>
-    <memberTool name="tool_1"/>
   </toolshelf>
 
   <tool name="nm_source_burn" label="Source Fire" icon="SHELF_fire">
