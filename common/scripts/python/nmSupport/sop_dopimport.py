@@ -63,8 +63,8 @@ def add_dopimportfield(N,targetNode=None):
 				sparse = True
 				break
 				
-
-		dopnode = smkobjs[0]
+		if len(smkobjs)>0:
+			dopnode = smkobjs[0]
 		#print node
 		node.setInput(0,N)
 

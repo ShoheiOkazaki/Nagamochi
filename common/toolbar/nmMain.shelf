@@ -54,6 +54,7 @@ launchMplayFromNode.launch(kwargs['ctrlclick'])]]></script>
   </tool>
 
   <tool name="nm_main_saveInc" label="Save+" icon="hicon:/SVGIcons.index?BUTTONS_import_library.svg">
+    <helpText><![CDATA["""Incremental Save"""]]></helpText>
     <script scriptType="python"><![CDATA[import saveHipIncrementVersion
 reload(saveHipIncrementVersion)
 
