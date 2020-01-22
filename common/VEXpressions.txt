@@ -94,6 +94,18 @@ attribwrangle/snippet
     vector usamplerw = rand(@ptnum);
     p@orient = sample_orientation_cone({ 1, 0, 0, 0 }, radians(180), usamplerw);
 
+attribwrangle/snippet
+    [Nagamochi] set name for instancing copy
+    string class = 'prim';
+    string attr = 'name';
+
+    int num_val = nuniqueval(1,class,attr);
+
+    int randi = fit01(chramp('ramp',rand(@ptnum+chi('seed'))),0,num_val);
+    string rname = uniqueval(1, class, attr,randi);
+    addattrib(0, 'point', attr, '');
+    setpointattrib(0,attr,@ptnum,rname);
+
 
 attribwrangle/snippet
     [Nagamochi] decayed pscale by nage

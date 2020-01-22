@@ -8,6 +8,9 @@
   <toolshelf name="nm_support" label="Nagamochi Support">
     <memberTool name="nm_sop_source_smoke"/>
     <memberTool name="nm_source_burn"/>
+    <memberTool name="nm_sop_dopsop_pyro"/>
+    <memberTool name="nm_sop_dopsop_bullet"/>
+    <memberTool name="nm_sop_dopsop_bulletEmit"/>
     <memberTool name="nm_sop_dopimport_pyro"/>
     <memberTool name="nm_sop_dopimport_rbdbullet"/>
   </toolshelf>
@@ -77,5 +80,56 @@ n = None
 if len(sels)>0:
     n = sels[0]
 dopimport.run(n,simtype='rbd')]]></script>
+  </tool>
+
+  <tool name="nm_sop_dopsop_pyro" label="DopSop Pyro(Smoke)" icon="SHELF_smoke_heavy">
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Support</toolSubmenu>
+    <script scriptType="python"><![CDATA[import nmSupport.gallery_import as gallery_import
+reload(gallery_import)
+
+sels = hou.selectedNodes()
+
+n = None
+if len(sels)>0:
+    n = sels[0]
+gallery_import.run(n,doptype='pyro_smoke',pane=kwargs["pane"])
+]]></script>
+  </tool>
+
+  <tool name="nm_sop_dopsop_bullet" label="DopSop RBD" icon="DOP_rbdpackedobject">
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Support</toolSubmenu>
+    <script scriptType="python"><![CDATA[import nmSupport.gallery_import as gallery_import
+reload(gallery_import)
+
+sels = hou.selectedNodes()
+
+n = None
+if len(sels)>0:
+    n = sels[0]
+gallery_import.run(n,doptype='rbdbullet',pane=kwargs["pane"])
+]]></script>
+  </tool>
+
+  <tool name="nm_sop_dopsop_bulletEmit" label="DopSop RBD (Emit)" icon="DOP_rbdpackedobject">
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Support</toolSubmenu>
+    <script scriptType="python"><![CDATA[import nmSupport.gallery_import as gallery_import
+reload(gallery_import)
+
+sels = hou.selectedNodes()
+
+n = None
+if len(sels)>0:
+    n = sels[0]
+gallery_import.run(n,doptype='rbdbullet_emit',pane=kwargs["pane"])
+]]></script>
   </tool>
 </shelfDocument>

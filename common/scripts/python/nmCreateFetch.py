@@ -161,15 +161,7 @@ def createGeometry(nName,nColor,sourcePath):
     return outRop
 
 def createWedge(nName,nColor,sourcePath):
-    #try:
-    #    outRop = hou.node('/out').createNode('mzWedgeToH',nName)
-    #    outRop.setParms({           
-    #        "driver" : sourcePath,
-    #        "per_task" : 0,
-    #        })  
-
-    #except:
-    
+   
 
     outRop = hou.node('/out').createNode('wedge',nName) 
     tpl = hou.StringParmTemplate("source", "Source", 1, string_type=hou.stringParmType.NodeReference)

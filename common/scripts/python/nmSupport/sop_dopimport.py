@@ -1,6 +1,6 @@
 import hou
 
-def run(N,simtype='pyro'):
+def run(N,simtype='pyro',pyrofire=True):
 	hasTarget = False
 	creatednodes =[]
 
@@ -14,7 +14,7 @@ def run(N,simtype='pyro'):
 		if hasTarget:
 			targetNode=N
 		
-		node_import,sparse = add_dopimportfield(N,targetNode=targetNode)
+		node_import,sparse = add_dopimportfield(N,targetNode=targetNode,fire=pyrofire)
 		creatednodes.append(node_import)
 		
 		node_post = add_pyropostprocess(N,sparse=sparse)
@@ -37,7 +37,7 @@ def run(N,simtype='pyro'):
 
 
 
-def add_dopimportfield(N,targetNode=None):
+def add_dopimportfield(N,targetNode=None,fire=True):
 	parent = N.parent()
 
 	doppath = ''
@@ -94,6 +94,9 @@ def add_dopimportfield(N,targetNode=None):
 		# compression
 		'quantizetol1' : 0.001,	
 		})
+
+	if fire is False:
+		node.parm('fields').set(2)
 
 	return node,sparse
 
