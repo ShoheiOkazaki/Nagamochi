@@ -19,10 +19,10 @@ def run(N,doptype='pyro_smoke',pane=None):
 
 
 	gal_dir = {
-		'pyro_smoke':['Nagamochi','SIM__pyro_smoke'],
-		'pyro_fire':['Nagamochi_Limited','SIM__pyro_fire'],
+		    'pyro_smoke':['Nagamochi','SIM__pyro_smoke'],
+		     'pyro_fire':['Nagamochi_Limited','SIM__pyro_fire'],
 		'pyro_explosion':['Nagamochi_Limited','SIM__pyro_fire'],
-		'rbdbullet':['Nagamochi','SIM__rbdbullet'],
+		     'rbdbullet':['Nagamochi','SIM__rbdbullet'],
 		'rbdbullet_emit':['Nagamochi','SIM__rbdbullet_emit'],
 		}
 
