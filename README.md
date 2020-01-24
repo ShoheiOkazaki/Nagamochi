@@ -24,6 +24,8 @@ NAGAMOCHI = PLACE_TO_INSTALL
 HOUDINI_PATH = $NAGAMOCHI/common:$NAGAMOCHI/houdini$HOUDINI_MAJOR_RELEASE.$HOUDINI_MINOR_RELEASE:&
 ```
 
+### Tutorials 
+https://vimeo.com/shohey
 
 ### Future Work
 - Create a video that how to use tools
