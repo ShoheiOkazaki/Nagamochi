@@ -36,4 +36,10 @@ https://vimeo.com/shohey
 ### Author
 
 * Shohei Okazaki
- 
+
+### Note
+Nagamochi has two meanings, 「長持」 and 「長持ち」.
+長持 is the toolbox of old Japanese folklore.
+And 長持ち means 'long-lasting'.
+
+Nagamochi aims to be the toolbox that does not bound by Houdini version.
