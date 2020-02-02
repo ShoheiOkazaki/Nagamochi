@@ -42,7 +42,7 @@ def invert_parm(n,parmname):
 def run(n):
 	ramp_parms_name,ramp_parms_label = get_ramp_parm(n)
 
-	sel_parms = hou.ui.selectFromList(ramp_parms_label, default_choices=([0]),message='Select Parms to reverse ramp')
+	sel_parms = hou.ui.selectFromList(ramp_parms_label, default_choices=([0]),title="[Nagamochi] Reverse Ramp",message='Select Parms to reverse ramp on [{}]'.format(n.path()))
 
 	for ramp_parm in sel_parms:
 		invert_parm(n,ramp_parms_name[ramp_parm])
