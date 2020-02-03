@@ -27,10 +27,10 @@ HOUDINI_PATH = $NAGAMOCHI/common:$NAGAMOCHI/houdini$HOUDINI_MAJOR_RELEASE.$HOUDI
 ### Tutorials 
 https://vimeo.com/shohey
 [OTL]
-	- SOP
-		- nmCameraClipPoints https://vimeo.com/388993350
-	- DOP
-		- nmGasAge https://vimeo.com/386939150
+- SOP
+	- nmCameraClipPoints https://vimeo.com/388993350
+- DOP
+	- nmGasAge https://vimeo.com/386939150
 
 ### Future Work
 - Create a video that how to use tools
