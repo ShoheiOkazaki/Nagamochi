@@ -28,7 +28,7 @@ nmCreateFetch.main(nodes=[n])
 	<context>
 		<expression><![CDATA[
 type = kwargs["node"].type().nameWithCategory()
-if type.startswith("Sop/nmFileCache") or type.startswith("Sop/filecache"):return True
+if type.lower().find('filecache') != -1:return True
 return False
 ]]></expression>
 		</context>
