@@ -9,6 +9,8 @@ def run(N,doptype='pyro_smoke',pane=None):
 	creatednodes_dop =[]
 	parent = None
 
+	print pane
+
 
 	if N:
 		hasTarget = True
@@ -16,6 +18,10 @@ def run(N,doptype='pyro_smoke',pane=None):
 
 	elif pane is not None:
 		parent = pane.pwd()
+
+	if parent is None:
+		print 'Select any node'
+		return None
 
 
 	gal_dir = {
@@ -43,6 +49,9 @@ def run(N,doptype='pyro_smoke',pane=None):
 	if gnode is not None:
 		cnode = gnode.createChildNode(parent)
 		cnode.setComment('')
+
+		if cnode.type().name()=='dopnet':
+			cnode.parm('startframe').set(hou.expandString("$FSTART"))
 
 		if N:
 			cnode.setInput(0,N)
