@@ -112,3 +112,11 @@ attribwrangle/snippet
     @pscale *= chramp('nage',1.0-@nage);
 
 
+attribwrangle/snippet
+    [Nagamochi] get value from volume
+    f@density = volumesample(1,'density',@P);
+    f@age = volumesample(1,'age',@P);
+    v@vel = volumesamplev(1,'vel',@P);
+    v@rest = volumesamplev(1,'rest',@P);
+
+
