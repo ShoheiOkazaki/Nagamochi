@@ -55,7 +55,35 @@ n = kwargs["node"]
 createCtrlReadFile4Cache.run(n,1)
 ]]></scriptCode>
 		</scriptItem>
-	</subMenu>
+</subMenu>
+
+<scriptItem id="opmenu.create_render_geo">			
+	<context>
+	<expression><![CDATA[
+type = kwargs["node"].type().nameWithCategory()
+name = kwargs["node"].name()
+if type.startswith("Sop/null") and name.startswith("TO_REN__"):return True
+return False
+]]></expression>
+</context>
+	<label>[Nagamochi] Create Render Geo to Object</label>
+	<scriptCode>
+		<![CDATA[
+n = kwargs["node"]
+nname = n.name()
+npath = n.path()
+ppos  = n.parent().position()
+renName = nname.replace("TO_REN__","RENDER__")
+rengeo = hou.node('/obj').createNode('geo',renName)
+rengeo.setColor(hou.Color(.4,.2,.6))
+rengeo.setPosition(ppos + hou.Vector2(0,-1))
+rengeo.parm('picking').set(0)
+objmer_node = rengeo.createNode('object_merge')
+objmer_node.parm('xformtype').set(1)
+objmer_node.parm('objpath1').set(npath)
+]]></scriptCode>
+		</scriptItem>
+	
 
 
 	</menu>

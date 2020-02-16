@@ -63,7 +63,7 @@ def setDefalut(selRops):
             parmnum[0] += 8
 
         elif selRop.type().name()=='arnold':
-            jobName = '`$OS`(`chs("versionMajor")`)'
+            #jobName = '`$OS`(`chs("versionMajor")`)'
 
             selRop.setParms({
                 # Main              

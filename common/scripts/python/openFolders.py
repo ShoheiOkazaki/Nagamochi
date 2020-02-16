@@ -33,8 +33,10 @@ def openFolderH():
 
 def openFolder(targetpath):
 	#sys.platform
+	print targetpath
 	if os.name == 'posix':
 		try:
+			#os.popen( 'nemo '+ targetpath)
 			subprocess.call(["nemo", targetpath])
 		except:
 			subprocess.call(["nautilus", targetpath])
