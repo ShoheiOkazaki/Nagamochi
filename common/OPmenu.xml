@@ -34,7 +34,7 @@ return False
 		</context>
 	<label>[Nagamochi] Create control node for this ReadFile</label>
 
-	<scriptItem id="opmenu.mega_create_timeblend">
+	<scriptItem id="opmenu.nm_create_timeblend">
 		
 		<label>Time Blend</label>
 		<scriptCode>
@@ -45,7 +45,7 @@ n = kwargs["node"]
 createCtrlReadFile4Cache.run(n,0)
 ]]></scriptCode>
 		</scriptItem>
-	<scriptItem id="opmenu.mega_create_switchoff">
+	<scriptItem id="opmenu.nm_create_switchoff">
 		<label>Switch Off</label>
 		<scriptCode>
 			<![CDATA[
