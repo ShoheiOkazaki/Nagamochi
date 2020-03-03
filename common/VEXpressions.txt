@@ -114,9 +114,14 @@ attribwrangle/snippet
 
 attribwrangle/snippet
     [Nagamochi] get value from volume
-    f@density = volumesample(1,'density',@P);
-    f@age = volumesample(1,'age',@P);
-    v@vel = volumesamplev(1,'vel',@P);
-    v@rest = volumesamplev(1,'rest',@P);
+    f@vol_density     = volumesample(1,'density',@P);
+    f@vol_temperature = volumesample(1,'temperature',@P);
+    f@vol_heat        = volumesample(1,'heat',@P);
+    //f@vol_age         = volumesample(1,'age',@P);
+    //f@vol_speed       = volumesample(1,'speed',@P);
+
+    v@vol_vel = volumesamplev(1,'vel',@P);
+    //v@vol_gradient = volumesamplev(1,'gradient',@P);
+    //v@vol_rest = volumesamplev(1,'rest',@P);
 
 
