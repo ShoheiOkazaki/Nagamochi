@@ -25,32 +25,37 @@ def attribLabel(a):
     
 def getPointAttrs(N):
     attrs_pt = []
-    for pt in N.geometry().pointAttribs():
-        attrs_pt.append( pt.name() )
+    if N.geometry() is not None:
+        for pt in N.geometry().pointAttribs():
+            attrs_pt.append( pt.name() )
     return attrs_pt
 
 def getPrimAttrs(N):
     attrs_pr = []
-    for pr in N.geometry().primAttribs():
-        attrs_pr.append( pr.name() )
+    if N.geometry() is not None:
+        for pr in N.geometry().primAttribs():
+            attrs_pr.append( pr.name() )
     return attrs_pr
 
 def getVertexAttrs(N):
-    attrs_vx = []        
-    for vx in N.geometry().vertexAttribs():
-        attrs_vx.append( vx.name() )
+    attrs_vx = []
+    if N.geometry() is not None:        
+        for vx in N.geometry().vertexAttribs():
+            attrs_vx.append( vx.name() )
     return attrs_vx
 
 def getDetailAttrs(N):
     attrs_de = []
-    for de in N.geometry().globalAttribs():
-        attrs_de.append( de.name() )
+    if N.geometry() is not None:
+        for de in N.geometry().globalAttribs():
+            attrs_de.append( de.name() )
     return attrs_de
 
 def getIntrinsics(N):
     attrs_in = []
-    for intr in N.geometry().prims()[0].intrinsicNames():
-        attrs_in.append( intr )
+    if N.geometry() is not None:
+        for intr in N.geometry().prims()[0].intrinsicNames():
+            attrs_in.append( intr )
     return attrs_in
 
 
