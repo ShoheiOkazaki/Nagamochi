@@ -71,10 +71,12 @@ def getList(parms):
             menu_items = ['Set Path for Point Cloud','Set Path for Point Cloud']
 
         # group
-        elif parm.name()=='group' or parm.name().startswith('snippet') or parm.name()=='bindgroup':
+        elif parm.name()=='group' or parm.name().startswith('snippet') or parm.name()=='bindgroup' or parm.name()=='parmname':
             import getAttributes
             reload(getAttributes)
             inputs = parm.node().inputs()
+            if node=='bind':
+                inputs = parm.node().parent().inputs()
             if len(inputs)>0:
                 menu_items =  getAttributes.buildList(inputs[0],addAttrType=True)
             #print menu_items
@@ -144,7 +146,7 @@ def setParms(parms,select):
     elif parms[0].name().find('camera')!=-1 or parms[0].name().find('cam_campath')!=-1:
         parms[0].set(select)
 
-    elif parms[0].name()=='group' or parms[0].name().startswith('snippet') or parms[0].name()=='bindgroup':
+    elif parms[0].name()=='group' or parms[0].name().startswith('snippet') or parms[0].name()=='bindgroup'or parms[0].name()=='parmname':
         parm_value = ''
         if len(parms[0].eval()):
             parm_value = parms[0].eval() + ' '
