@@ -38,6 +38,20 @@ attribwrangle/snippet
         setpointattrib(0, 'curveu', pt2, curveu);
     }
 
+attribwrangle/snippet
+    [Nagamochi] pct
+    //run over 'prim'
+    int numPoints = primvertexcount(0,@primnum);
+    int verNum    = primvertexcount(0,@primnum);
+    int vertexs[] = primvertices(0,@primnum);
+
+    addattrib(0,'point','pct',0.0);
+
+    for(int i=1; i<len(vertexs); i++){
+        int pt = vertexpoint(0,vertexs[i]);
+        float v = i/(len(vertexs)-1.0);
+        setpointattrib(0, 'pct', pt, v);
+        }
 
 attribwrangle/snippet
     [Nagamochi] pop emit with linear motion of uniform acceleration
