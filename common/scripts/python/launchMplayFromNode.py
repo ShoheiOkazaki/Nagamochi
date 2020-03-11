@@ -14,8 +14,8 @@ def launch(switch):
             run_mplay(n,'ar_picture')
         elif n.type().name() == 'comp':
             run_mplay(n,'copoutput')
-        elif n.type().name() == 'rib':
-            run_mplay(n,'ri_display')
+        elif n.type().name() == 'ris::22':
+            run_mplay(n,'ri_display_0')
 
     elif switch == True:
         if n.type().name() == 'ifd':
@@ -26,8 +26,8 @@ def launch(switch):
             run_rv(n,'ar_picture')
         elif n.type().name() == 'comp':
             run_rv(n,'copoutput')
-        elif n.type().name() == 'rib':
-            run_rv(n,'ri_display')
+        elif n.type().name() == 'ris::22':
+            run_rv(n,'ri_display_0')
 
     # else:
     #     hou.ui.displayMessage('Plz select Mantra ROP')
