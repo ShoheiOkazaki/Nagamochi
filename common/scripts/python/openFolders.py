@@ -30,6 +30,44 @@ def openFolderH():
 	homePath = str(hou.getenv("HOUDINI_USER_PREF_DIR"))
 	openFolder(homePath)
 
+def getFolderParms(node):
+
+	chooselist = []
+	targets = {}
+
+
+	for parm in node.parms():
+		if  parm.parmTemplate().type() == hou.parmTemplateType.String:
+			if parm.parmTemplate().stringType() == hou.stringParmType.FileReference and parm.eval() is not '':
+				chooselist.append( '{} - {}({})'.format(node.path(),parm.parmTemplate().label(),parm.name()) )
+				# targets.append( os.path.dirname(parm.eval()) )
+				# targets.append( '{} - {}({})'.format(node.path(),parm.parmTemplate().label(),parm.name()) )
+				targets["{} - {}({})".format(node.path(),parm.parmTemplate().label(),parm.name())] = os.path.dirname(parm.eval())
+
+	return chooselist,targets
+
+def openFolderFromSelectedNodes(ns=hou.selectedNodes()):
+
+	chooselist = []
+	choosedict = {}
+
+	for n in ns:
+		getlist,getdict = getFolderParms(n)
+		chooselist += getlist
+		choosedict.update(getdict)
+
+	#print choosedict,chooselist
+
+	if len(chooselist)>0:
+		choose = hou.ui.selectFromList(chooselist, message='Select Parms to bake key')
+
+		for i in choose:
+			#print str(chooselist[i])
+			foloderpath = choosedict[chooselist[i]]
+			if os.path.exists(foloderpath):
+				openFolder(foloderpath)
+			else:
+				print '{} is does not exists.'.format(foloderpath)
 
 def openFolder(targetpath):
 	#sys.platform

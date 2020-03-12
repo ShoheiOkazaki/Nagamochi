@@ -8,6 +8,7 @@
   <toolshelf name="nm_main" label="Nagamochi">
     <memberTool name="nm_main_openW"/>
     <memberTool name="nm_main_openH"/>
+    <memberTool name="nm_main_openNodes"/>
     <memberTool name="nm_main_saveInc"/>
     <memberTool name="nm_main_creatNetWorkBoxSet"/>
     <memberTool name="nm_main_reverseRamp"/>
@@ -77,5 +78,11 @@ ns = hou.selectedNodes()
 
 for n in ns:
     parm_invertRamp.run(n)]]></script>
+  </tool>
+
+  <tool name="nm_main_openNodes" label="Open from Nodes" icon="hicon:/SVGIcons.index?BUTTONS_folder.svg">
+    <script scriptType="python"><![CDATA[import openFolders
+reload(openFolders)
+openFolders.openFolderFromSelectedNodes()]]></script>
   </tool>
 </shelfDocument>
