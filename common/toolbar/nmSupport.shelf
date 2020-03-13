@@ -13,6 +13,7 @@
     <memberTool name="nm_sop_dopsop_bulletEmit"/>
     <memberTool name="nm_sop_dopimport_pyro"/>
     <memberTool name="nm_sop_dopimport_rbdbullet"/>
+    <memberTool name="nm_obj_workgeo"/>
   </toolshelf>
 
   <tool name="nm_source_burn" label="Source Fire" icon="SHELF_fire">
@@ -130,6 +131,18 @@ n = None
 if len(sels)>0:
     n = sels[0]
 gallery_import.run(n,doptype='rbdbullet_emit',pane=kwargs["pane"])
+]]></script>
+  </tool>
+
+  <tool name="nm_obj_workgeo" label="Work Geo" icon="OBJ_geo">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi</toolSubmenu>
+    <script scriptType="python"><![CDATA[import nmSupport.createWorkGeo as createWorkGeo
+reload(createWorkGeo)
+pane=kwargs["pane"]
+createWorkGeo.run(pane)
 ]]></script>
   </tool>
 </shelfDocument>
