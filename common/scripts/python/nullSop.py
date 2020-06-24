@@ -10,6 +10,7 @@ def setNodeNameColor():
                 "NULL"   : [hou.Color((0.2,0.2,0.2)), "Both"],
                 "TO_REN_": [hou.Color((0.4,0.2,0.6)), ""],
                 "TO_DOP_": [hou.Color((0.4,0.2,0.6)), ""],
+                "TO_INSTANCE_PT_": [hou.Color((0.4,0.2,0.6)), ""],
                 }
 
     prefix  = n.parm('output_prefix').eval()
@@ -47,7 +48,9 @@ def setNodeNameColor():
         name = '%s_%s_%s' % (prefix,doptype,label)
 
     else:
-        pass
+        name = prefix
+        if len(label)>0:
+            name += '_%s' % label
     
     n.setName(name)
     n.setColor(arg[0])

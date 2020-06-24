@@ -202,8 +202,9 @@ def setParms(parms,select):
         extraName  = "`chs('ar_aov_label{}')`".format(extraLayer)
         mainOut = node.parm('ar_picture').unexpandedString()
         mainOuts = mainOut.split('/')
-        mainOuts[-1] = "{}/{}".format(extraName,mainOuts[-1]).replace('`$OS`','`$OS`_{}'.format(extraName))
-        extraOut = '/'.join(mainOuts)
+        # mainOuts[-1] = "{}/{}".format(extraName,mainOuts[-1]).replace('`$OS`','`$OS`_{}'.format(extraName))
+        # extraOut = '/'.join(mainOuts)
+        extraOut = "{}/`chs('ar_aov_label'+opdigits($CH))`/`$OS`_`chs('ar_aov_label'+opdigits($CH))`.`chs('version')`.$F4.exr".format(mainOut.rsplit('/',2)[0])
         parm.set(extraOut)
 
     elif select.startswith("setImag"):

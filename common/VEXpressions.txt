@@ -138,4 +138,8 @@ attribwrangle/snippet
     //v@vol_gradient = volumesamplev(1,'gradient',@P);
     //v@vol_rest = volumesamplev(1,'rest',@P);
 
-
+volumewrangle/snippet
+    [Nagamochi] Blend rest aand rest2
+    float ratio = detail(0, "rest2_ratio", 0);
+    vector dualrest = lerp(v@rest, v@rest2, ratio);
+    v@dualrest = dualrest;
