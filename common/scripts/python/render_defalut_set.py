@@ -92,7 +92,7 @@ def setDefalut(selRops):
                 "ar_abort_on_license_fail":1,
                 #  - Diagnostics
                 "ar_log_verbosity" : "detailed",                                 #  Log Verbosity
-                "ar_ignore_operators":1, # For Igonre Input
+                # "ar_ignore_operators":1, # For Igonre Input
                 # Archive
                 "ar_binary_ass" : 0,
                 "ar_export_asstoc" : 0,
