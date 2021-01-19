@@ -89,6 +89,16 @@ attribwrangle/snippet
         }
 
 attribwrangle/snippet
+    [Nagamochi] xyzDist
+    int hitprim;
+    vector hitprimuv;
+
+    float d = xyzdist(1,@P,hitprim,hitprimuv);
+
+    vector getv1 = vector(primuv(1, 'Cd', hitprim, hitprimuv));
+    //float  getf1 = float(primuv(1, 'v', hitprim, hitprimuv));
+
+attribwrangle/snippet
     [Nagamochi] create random float val using ramp
     float seed = chf('seed');
     float dmin = chf('destmin');
