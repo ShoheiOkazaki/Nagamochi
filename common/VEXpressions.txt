@@ -18,6 +18,11 @@ attribwrangle/snippet
                 }      
         }
 
+
+attribwrangle/snippet
+    [Nagamochi] name_index
+    i@name_index = findattribval(0,'prim','name',s@name);
+
 attribwrangle/snippet
     [Nagamochi] curveu
     //run over 'prim'
@@ -90,13 +95,28 @@ attribwrangle/snippet
 
 attribwrangle/snippet
     [Nagamochi] xyzDist
+    // - init parms
     int hitprim;
     vector hitprimuv;
+    int ingeo_src = 1;
+    int ingeo_tgt = 1;
 
-    float d = xyzdist(1,@P,hitprim,hitprimuv);
+    // - get hit info
+    float d = xyzdist(ingeo,@P,hitprim,hitprimuv);
 
-    vector getv1 = vector(primuv(1, 'Cd', hitprim, hitprimuv));
-    //float  getf1 = float(primuv(1, 'v', hitprim, hitprimuv));
+    // - get attrs
+    vector get_v1 = vector(primuv(ingeo_tgt, 'Cd', hitprim, hitprimuv));
+    //float get_f1 = float(primuv(ingeo_tgt, 'v', hitprim, hitprimuv));
+    //int get_i1 = int(primuv(ingeo_tgt, 'class', hitprim, hitprimuv));
+
+    // - output attrs
+    //i@hitprim = hitprim;
+    //v@hitprimuv = hitprimuv;
+
+    //v@vv = get_v1;
+    //f@ff = get_f1;
+    //t@ii = get_i1;
+
 
 attribwrangle/snippet
     [Nagamochi] create random float val using ramp
