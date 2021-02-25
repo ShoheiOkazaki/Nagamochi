@@ -168,6 +168,24 @@ attribwrangle/snippet
     //v@vol_gradient = volumesamplev(1,'gradient',@P);
     //v@vol_rest = volumesamplev(1,'rest',@P);
 
+attribwrangle/snippet
+    [Nagamochi] set match attrib for fuse
+    // - get nearpoints
+    string grp = sprintf('@cluster_name!=%s',s@cluster_name);
+    int npts[] = nearpoints(0,grp,@P,0.00001);
+
+    // - prepare
+    append(npts,@ptnum);
+
+    string s_npts[];
+    foreach(int i; sort(npts)){
+        append(s_npts,itoa(i));
+        }
+
+    // - outputs
+    s@fuse_name = join(s_npts,'_');
+    //i[]@npts = sort(npts);
+
 volumewrangle/snippet
     [Nagamochi] Blend rest aand rest2
     float ratio = detail(0, "rest2_ratio", 0);
