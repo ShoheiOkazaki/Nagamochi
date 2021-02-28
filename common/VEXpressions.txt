@@ -102,7 +102,7 @@ attribwrangle/snippet
     int ingeo_tgt = 1;
 
     // - get hit info
-    float d = xyzdist(ingeo,@P,hitprim,hitprimuv);
+    float d = xyzdist(ingeo_src,@P,hitprim,hitprimuv);
 
     // - get attrs
     vector get_v1 = vector(primuv(ingeo_tgt, 'Cd', hitprim, hitprimuv));
