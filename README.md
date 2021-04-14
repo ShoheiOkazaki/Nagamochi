@@ -13,15 +13,31 @@ Nagamochi is a library of Digital Assets, Presets, Shelves and Scripts for SideF
 
 ### Requirement
 
-Houdini 17.0 or Higher
+Houdini 18.0 or Higher
 
 ### Installation
-- Save this repository wherever you like.
-- Append the path to the Ngamochi folder like a following example to your `houdini.env` file.
+1. Save this repository wherever you like.
+2. Copy the nagamochi.json file from the location used in step 1 to $HOME/Houdini18.5/packages, and change the contained paths to match the location chosen in step 1.
 
-```bash
-NAGAMOCHI = PLACE_TO_INSTALL
-HOUDINI_PATH = $NAGAMOCHI/common:$NAGAMOCHI/houdini$HOUDINI_MAJOR_RELEASE.$HOUDINI_MINOR_RELEASE:&
+```json
+{
+    "env" : 
+    [
+        {   "NAGAMOCHI" : "PLACE_TO_INSTALL"  },
+
+        {   "HOUDINI_PATH" :
+        	{
+        		"value":
+        			[        				
+                                        "$NAGAMOCHI/common",
+        				"$NAGAMOCHI/houdini$HOUDINI_MAJOR_RELEASE.$HOUDINI_MINOR_RELEASE",                       
+        			],
+        	}
+        },
+        
+        {   "NM_CACHE_HOU" : "HIP_VAR/../caches"  },
+    ]
+}
 ```
 
 ### Tutorials 
@@ -33,8 +49,8 @@ https://vimeo.com/shohey
 	- nmGasAge https://vimeo.com/386939150
 
 ### Future Work
+- Python 3
 - Create a video that how to use tools
-- Add custom Deadline submit tool
 - Clean up some scripts
 - Support Windows users. (I'm developing this tool on Linux(mint/CentOS).)
 
