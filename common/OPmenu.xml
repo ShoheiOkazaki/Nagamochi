@@ -9,7 +9,7 @@
 			<expression><![CDATA[
 type = kwargs["node"].type().nameWithCategory()
 name = kwargs["node"].name()
-if type.startswith("Sop/nmFileCache"):return True
+if "Sop/nmFileCache" in type:return True
 return False
 ]]></expression>
 			</context>
@@ -17,7 +17,6 @@ return False
 			<scriptCode>
 				<![CDATA[
 import nmCreateFetch
-reload(nmCreateFetch)
 n = kwargs["node"]
 nmCreateFetch.main(nodes=[n])
 ]]></scriptCode>
@@ -40,7 +39,6 @@ return False
 		<scriptCode>
 			<![CDATA[
 import createCtrlReadFile4Cache
-reload(createCtrlReadFile4Cache)
 n = kwargs["node"]
 createCtrlReadFile4Cache.run(n,0)
 ]]></scriptCode>
@@ -50,7 +48,6 @@ createCtrlReadFile4Cache.run(n,0)
 		<scriptCode>
 			<![CDATA[
 import createCtrlReadFile4Cache
-reload(createCtrlReadFile4Cache)
 n = kwargs["node"]
 createCtrlReadFile4Cache.run(n,1)
 ]]></scriptCode>
