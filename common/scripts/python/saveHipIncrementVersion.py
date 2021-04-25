@@ -1,6 +1,9 @@
 import hou
 import os, re, time
 
+from nagamochi_utils import MSG
+script_name = 'IncrementalSave'
+
 def run():
     # ======== Get current info ========
     orighip = hou.hipFile.name()
@@ -94,5 +97,3 @@ def run():
         
         hou.ui.setStatusMessage(message)
         
-    #print newhip
-    #print '----------------------------------\n'

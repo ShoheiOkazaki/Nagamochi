@@ -13,6 +13,8 @@
 import hou
 from datetime import datetime, date, time
 
+from nagamochi_utils import MSG
+script_name = 'createHelpTemplate'
 
 def doit():
 
@@ -78,13 +80,7 @@ def doit():
                 continue
             #print template
             folders = parm_tuple[0].containingFolders()
-            #print folders
-            #if 'Harvester' in list(folders):
-            #    break
-            #if 'invisible' in list(folders):
-            #    break
-            #if '(Invisible Param)' in list(folders):
-            #    break
+
 
             
             folder_len = len(folders)
@@ -156,14 +152,20 @@ def doit():
 
         # ReleaseNote block.
         result.append("@release Release Note")
-        noteHeader = version + ' - ' +datetime.now().strftime("%Y/%m/%d")+' - '+hou.applicationVersionString()+' - '+hou.expandString('$USERNAME')+' :'
+        username = hou.expandString('$USERNAME')
+        if username == '':
+            username = hou.expandString('$USER')
+
+        # noteHeader = version + ' - ' +datetime.now().strftime("%Y/%m/%d")+' - '++' - '++' :'
+        noteHeader = '{} - {} - {} - {} :'.format(version, datetime.now().strftime("%Y/%m/%d"), hou.applicationVersionString(), username)
         result.append(noteHeader)
         result.append("	:new: Initial Release")
 
 
         # Export txt file to $HIP
         txtPath = hou.expandString('$HIP') + "/" + type_name + ".txt"
-        print 'Save to ' + txtPath
+        meg_txt = 'Save to ' + txtPath
+        MSG(script_name,meg_txt,StatusMessage_enbale=True)
         texts = '\n'.join(result)
         f = open(txtPath,'w')
         f.writelines(texts)

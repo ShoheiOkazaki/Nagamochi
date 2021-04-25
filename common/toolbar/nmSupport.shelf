@@ -14,6 +14,7 @@
     <memberTool name="nm_sop_dopimport_pyro"/>
     <memberTool name="nm_sop_dopimport_rbdbullet"/>
     <memberTool name="nm_obj_workgeo"/>
+    <memberTool name="nm_make_helpcard"/>
   </toolshelf>
 
   <tool name="nm_source_burn" label="Source Fire" icon="SHELF_fire">
@@ -144,5 +145,12 @@ reload(createWorkGeo)
 pane=kwargs["pane"]
 createWorkGeo.run(pane)
 ]]></script>
+  </tool>
+
+  <tool name="nm_make_helpcard" label="Make Help" icon="hicon:/SVGIcons.index?BUTTONS_help.svg">
+    <helpText><![CDATA["""Create Help. Copy to Clipbord and Create .txt into $HIP"""]]></helpText>
+    <script scriptType="python"><![CDATA[import createHelpTemplate as cth
+
+cth.doit()]]></script>
   </tool>
 </shelfDocument>
