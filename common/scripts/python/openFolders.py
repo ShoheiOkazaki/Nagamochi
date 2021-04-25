@@ -3,6 +3,9 @@ import hou
 import os
 import subprocess
 
+from nagamochi_utils import MSG
+script_name = 'OpenFolder'
+
 def openFolderW():
 	hipPath = hou.hipFile.path()
 	(hipPath, dummy) = os.path.split(hipPath)
@@ -15,8 +18,6 @@ def openFolderC():
 	user = str(hou.getenv("USER"))
 
 	cachePath = fxC + "/" + user + "/" + seq + "/" + shot 
-
-	#print cachePath
 
 	# check exsit floder
 	if(os.path.isdir(cachePath)):
@@ -34,7 +35,6 @@ def getFolderParms(node):
 
 	chooselist = []
 	targets = {}
-
 
 	for parm in node.parms():
 		if  parm.parmTemplate().type() == hou.parmTemplateType.String:
@@ -56,22 +56,18 @@ def openFolderFromSelectedNodes(ns=hou.selectedNodes()):
 		chooselist += getlist
 		choosedict.update(getdict)
 
-	#print choosedict,chooselist
-
 	if len(chooselist)>0:
 		choose = hou.ui.selectFromList(chooselist, message='Select Parms to bake key')
 
 		for i in choose:
-			#print str(chooselist[i])
 			foloderpath = choosedict[chooselist[i]]
 			if os.path.exists(foloderpath):
 				openFolder(foloderpath)
 			else:
-				print '{} is does not exists.'.format(foloderpath)
+				meg_txt ='{} is does not exists.'.format(foloderpath)
+				MSG(script_name,meg_txt,StatusMessage_enbale=True,StatusMessage_type=hou.severityType.ImportantMessage)
 
 def openFolder(targetpath):
-	#sys.platform
-	print targetpath
 	if os.name == 'posix':
 		try:
 			#os.popen( 'nemo '+ targetpath)
