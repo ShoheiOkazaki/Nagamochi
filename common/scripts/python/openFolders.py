@@ -71,9 +71,9 @@ def openFolder(targetpath):
 	if os.name == 'posix':
 		try:
 			#os.popen( 'nemo '+ targetpath)
-			subprocess.call(["nemo", targetpath])
+			subprocess.call(["xdg-open", targetpath])
 		except:
-			subprocess.call(["nautilus", targetpath])
+			subprocess.call(["nemo", targetpath])
 
 	elif os.name == 'nt':
 		targetpath = targetpath.replace('/','\\')
