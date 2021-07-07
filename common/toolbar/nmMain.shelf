@@ -11,7 +11,6 @@
     <memberTool name="nm_main_openNodes"/>
     <memberTool name="nm_main_saveInc"/>
     <memberTool name="nm_main_creatNetWorkBoxSet"/>
-    <memberTool name="nm_main_reverseRamp"/>
     <memberTool name="nm_main_switchOpenCL"/>
     <memberTool name="nm_main_renderDefaSet"/>
     <memberTool name="nm_main_launchMplay"/>
@@ -65,19 +64,12 @@ saveHipIncrementVersion.run()]]></script>
 
   <tool name="nm_main_creatNetWorkBoxSet" label="Create NetWorkBoxSet" icon="hicon:/SVGIcons.index?BUTTONS_network_box.svg">
     <script scriptType="python"><![CDATA[import createNetworkBoxSet
-reload(createNetworkBoxSet)
+#reload(createNetworkBoxSet)
 
-createNetworkBoxSet.run()]]></script>
-  </tool>
-
-  <tool name="nm_main_reverseRamp" label="Reverse Ramp" icon="hicon:/SVGIcons.index?VOP_ramps.svg">
-    <script scriptType="python"><![CDATA[import parm_invertRamp
-reload(parm_invertRamp)
-
-ns = hou.selectedNodes()
-
-for n in ns:
-    parm_invertRamp.run(n)]]></script>
+if kwargs['ctrlclick']:
+    createNetworkBoxSet.user_orginal_write()
+else:
+    createNetworkBoxSet.run()]]></script>
   </tool>
 
   <tool name="nm_main_openNodes" label="Open from Nodes" icon="hicon:/SVGIcons.index?BUTTONS_folder.svg">
