@@ -161,21 +161,32 @@ def createGeometry(nName,nColor,sourcePath):
     return outRop
 
 def createWedge(nName,nColor,sourcePath):
-   
+    try:
+        outRop = hou.node('/out').createNode('nmDeadlinePDGWedge',nName) 
+        outRop.setParms({
+            "source"  : sourcePath,
+            "use_wedge_attr0" : 1,
+            })                  
+        outRop.setParmExpressions({
+            "intrange0y" : 'ch("wedgecount0")-1',
+            })
 
-    outRop = hou.node('/out').createNode('wedge',nName) 
-    tpl = hou.StringParmTemplate("source", "Source", 1, string_type=hou.stringParmType.NodeReference)
-    outRop.addSpareParmTuple(tpl)
-    outRop.setParms({
-        "source"  : sourcePath,
-        "prefix"  : "",
-        "driver" : "`chs('source')`/To_Fetch",
-        "wedgeparams" : 1,
-        "random" : 0,
-        })                  
-    outRop.setParmExpressions({
-        "range1y" : 'ch("steps1")-1',
-        })
+
+    except:
+        outRop = hou.node('/out').createNode('wedge',nName)    
+        tpl = hou.StringParmTemplate("source", "Source", 1, string_type=hou.stringParmType.NodeReference)
+        outRop.addSpareParmTuple(tpl)
+
+        outRop.setParms({
+            "source"  : sourcePath,
+            "prefix"  : "",
+            "driver" : "`chs('source')`/To_Fetch",
+            "wedgeparams" : 1,
+            "random" : 0,
+            })                  
+        outRop.setParmExpressions({
+            "range1y" : 'ch("steps1")-1',
+            })
     outRop.setColor(nColor)
     return outRop
 

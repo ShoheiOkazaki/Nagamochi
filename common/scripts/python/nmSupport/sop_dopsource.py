@@ -161,7 +161,7 @@ def addfluidsource(objecttoconvert, preset, mode, volumeattribute, addnoise=Fals
     noisenode = None
     if usepyrosource and addnoise:
         noisenode = parent.createNode("attribnoise", "add_noise")
-        noisenode.parm("signature").set("dim1")
+        #noisenode.parm("signature").set("dim1")
         noisenode.parm("animated").set(True)
         noisenode.parm("fractal").set("none")
         noisenode.setInput(0, newfluidsource)
