@@ -169,6 +169,10 @@ attribwrangle/snippet
     //v@vol_rest = volumesamplev(1,'rest',@P);
 
 attribwrangle/snippet
+    [Nagamochi] set objid from dopimport
+    i@objid = atoi(split(s@dopobject,':')[1]);
+
+attribwrangle/snippet
     [Nagamochi] set match attrib for fuse
     // - get nearpoints
     string grp = sprintf('@cluster_name!=%s',s@cluster_name);

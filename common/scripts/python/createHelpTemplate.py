@@ -156,7 +156,6 @@ def doit():
         if username == '':
             username = hou.expandString('$USER')
 
-        # noteHeader = version + ' - ' +datetime.now().strftime("%Y/%m/%d")+' - '++' - '++' :'
         noteHeader = '{} - {} - {} - {} :'.format(version, datetime.now().strftime("%Y/%m/%d"), hou.applicationVersionString(), username)
         result.append(noteHeader)
         result.append("	:new: Initial Release")
