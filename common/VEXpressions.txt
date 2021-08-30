@@ -21,7 +21,8 @@ attribwrangle/snippet
 
 attribwrangle/snippet
     [Nagamochi] name_index
-    i@name_index = findattribval(0,'prim','name',s@name);
+    string uqs[] = uniquevals(0, 'prim',' name');
+    i@name_index = find(uqs, s@name);
 
 attribwrangle/snippet
     [Nagamochi] curveu
