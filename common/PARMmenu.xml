@@ -11,12 +11,14 @@
             <scriptMenuStripDynamic id="myUniqueDynamicStripId">
                 <contentsScriptCode><![CDATA[
 import nodeSnippets.parm_snippets as parm_snippets
-reload(parm_snippets)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(parm_snippets)
 return parm_snippets.getList(kwargs["parms"])
                 ]]></contentsScriptCode>
                 <scriptCode><![CDATA[
 import nodeSnippets.parm_snippets as parm_snippets
-reload(parm_snippets)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(parm_snippets)
 parm_snippets.setParms(kwargs["parms"],kwargs["selectedtoken"])
                 ]]></scriptCode>
             </scriptMenuStripDynamic>
@@ -60,7 +62,8 @@ hou.ui.copyTextToClipboard(parm.evalAsString())
             <label>Set</label>
             <scriptCode><![CDATA[
 import nodeSnippets.changeDescriptiveParm as changeDescriptiveParm
-reload(changeDescriptiveParm)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(changeDescriptiveParm)
 changeDescriptiveParm.doit(kwargs["parms"],"set")
                 ]]></scriptCode>
         </scriptItem>
@@ -69,7 +72,8 @@ changeDescriptiveParm.doit(kwargs["parms"],"set")
             <label>Clear</label>
                 <scriptCode><![CDATA[
 import nodeSnippets.changeDescriptiveParm as changeDescriptiveParm
-reload(changeDescriptiveParm)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(changeDescriptiveParm)
 changeDescriptiveParm.doit(kwargs["parms"],"clear")
                 ]]></scriptCode>
         </scriptItem>
