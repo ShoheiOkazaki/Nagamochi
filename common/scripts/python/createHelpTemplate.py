@@ -78,7 +78,7 @@ def doit():
             # If this parm is a type to ignore, skip to the next one.
             if template.type() in to_ignore:
                 continue
-            #print template
+            #print(template)
             folders = parm_tuple[0].containingFolders()
 
 

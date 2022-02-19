@@ -23,7 +23,9 @@
     </toolMenuContext>
     <toolSubmenu>Nagamochi Support</toolSubmenu>
     <script scriptType="python"><![CDATA[import nmSupport.sop_dopsource as dopsource
-reload(dopsource)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(dopsource)
+
 sels = hou.selectedNodes()
 
 if len(sels)>0:
@@ -40,7 +42,9 @@ if len(sels)>0:
     </toolMenuContext>
     <toolSubmenu>Nagamochi Support</toolSubmenu>
     <script scriptType="python"><![CDATA[import nmSupport.sop_dopsource as dopsource
-reload(dopsource)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(dopsource)
+
 sels = hou.selectedNodes()
 
 
@@ -60,7 +64,9 @@ else:
     </toolMenuContext>
     <toolSubmenu>Nagamochi Support</toolSubmenu>
     <script scriptType="python"><![CDATA[import nmSupport.sop_dopimport as dopimport
-reload(dopimport)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(dopimport)
+
 sels = hou.selectedNodes()
 
 n = None
@@ -75,7 +81,9 @@ dopimport.run(n,simtype='pyro')]]></script>
     </toolMenuContext>
     <toolSubmenu>Nagamochi Support</toolSubmenu>
     <script scriptType="python"><![CDATA[import nmSupport.sop_dopimport as dopimport
-reload(dopimport)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(dopimport)
+
 sels = hou.selectedNodes()
 
 n = None
@@ -90,7 +98,8 @@ dopimport.run(n,simtype='rbd')]]></script>
     </toolMenuContext>
     <toolSubmenu>Nagamochi Support</toolSubmenu>
     <script scriptType="python"><![CDATA[import nmSupport.gallery_import as gallery_import
-reload(gallery_import)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(gallery_import)
 
 sels = hou.selectedNodes()
 
@@ -107,7 +116,8 @@ gallery_import.run(n,doptype='pyro_smoke',pane=kwargs["pane"])
     </toolMenuContext>
     <toolSubmenu>Nagamochi Support</toolSubmenu>
     <script scriptType="python"><![CDATA[import nmSupport.gallery_import as gallery_import
-reload(gallery_import)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(gallery_import)
 
 sels = hou.selectedNodes()
 
@@ -124,7 +134,8 @@ gallery_import.run(n,doptype='rbdbullet',pane=kwargs["pane"])
     </toolMenuContext>
     <toolSubmenu>Nagamochi Support</toolSubmenu>
     <script scriptType="python"><![CDATA[import nmSupport.gallery_import as gallery_import
-reload(gallery_import)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(gallery_import)
 
 sels = hou.selectedNodes()
 
@@ -141,7 +152,9 @@ gallery_import.run(n,doptype='rbdbullet_emit',pane=kwargs["pane"])
     </toolMenuContext>
     <toolSubmenu>Nagamochi</toolSubmenu>
     <script scriptType="python"><![CDATA[import nmSupport.createWorkGeo as createWorkGeo
-reload(createWorkGeo)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(createWorkGeo)
+
 pane=kwargs["pane"]
 createWorkGeo.run(pane)
 ]]></script>
@@ -150,6 +163,8 @@ createWorkGeo.run(pane)
   <tool name="nm_make_helpcard" label="Make Help" icon="hicon:/SVGIcons.index?BUTTONS_help.svg">
     <helpText><![CDATA["""Create Help. Copy to Clipbord and Create .txt into $HIP"""]]></helpText>
     <script scriptType="python"><![CDATA[import createHelpTemplate as cth
+#import nagamochi_utils
+#nagamochi_utils.reload_func(cth)
 
 cth.doit()]]></script>
   </tool>

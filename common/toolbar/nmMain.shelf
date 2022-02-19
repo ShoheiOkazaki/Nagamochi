@@ -18,7 +18,8 @@
 
   <tool name="nm_main_renderDefaSet" label="Render Default" icon="hicon:/SVGIcons.index?ROP_mantra.svg">
     <script scriptType="python"><![CDATA[import render_defalut_set as rds
-reload(rds)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(rds)
 
 selRops = hou.selectedNodes()
 
@@ -28,14 +29,18 @@ rds.setDefalut(selRops)]]></script>
   <tool name="nm_main_openW" label="Open W" icon="hicon:/SVGIcons.index?BUTTONS_folder.svg">
     <helpText><![CDATA["""Open the folder of $HIP."""]]></helpText>
     <script scriptType="python"><![CDATA[import openFolders
-reload(openFolders)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(openFolders)
+
 openFolders.openFolderW()]]></script>
   </tool>
 
   <tool name="nm_main_openH" label="Open H" icon="hicon:/SVGIcons.index?BUTTONS_folder.svg">
     <helpText><![CDATA["""Open the folder of $HOUDINI_USER_PREF_DIR."""]]></helpText>
     <script scriptType="python"><![CDATA[import openFolders
-reload(openFolders)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(openFolders)
+
 openFolders.openFolderH()]]></script>
   </tool>
 
@@ -43,28 +48,34 @@ openFolders.openFolderH()]]></script>
     <helpText><![CDATA["""Change all OpenCL parms of all dop nodes in the selected DOP network."""
 ]]></helpText>
     <script scriptType="python"><![CDATA[import openClSwitcher
-reload(openClSwitcher)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(openClSwitcher)
+
 openClSwitcher.run()]]></script>
   </tool>
 
   <tool name="nm_main_launchMplay" label="Mplay/RV From Node" icon="hicon:/SVGIcons.index?NETWORKS_rop.svg">
     <helpText><![CDATA["""Select render node and Click -> Mplay (Ctrl + Click -> RV)"""]]></helpText>
     <script scriptType="python"><![CDATA[import launchMplayFromNode
-reload(launchMplayFromNode)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(launchMplayFromNode)
+
 launchMplayFromNode.launch(kwargs['ctrlclick'])]]></script>
   </tool>
 
   <tool name="nm_main_saveInc" label="Save+" icon="hicon:/SVGIcons.index?BUTTONS_import_library.svg">
     <helpText><![CDATA["""Incremental Save"""]]></helpText>
     <script scriptType="python"><![CDATA[import saveHipIncrementVersion
-reload(saveHipIncrementVersion)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(saveHipIncrementVersion)
 
 saveHipIncrementVersion.run()]]></script>
   </tool>
 
   <tool name="nm_main_creatNetWorkBoxSet" label="Create NetWorkBoxSet" icon="hicon:/SVGIcons.index?BUTTONS_network_box.svg">
     <script scriptType="python"><![CDATA[import createNetworkBoxSet
-#reload(createNetworkBoxSet)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(createNetworkBoxSet)
 
 if kwargs['ctrlclick']:
     createNetworkBoxSet.user_orginal_write()
@@ -74,7 +85,9 @@ else:
 
   <tool name="nm_main_openNodes" label="Open from Nodes" icon="hicon:/SVGIcons.index?BUTTONS_folder.svg">
     <script scriptType="python"><![CDATA[import openFolders
-reload(openFolders)
+#import nagamochi_utils
+#nagamochi_utils.reload_func(openFolders)
+
 openFolders.openFolderFromSelectedNodes()]]></script>
   </tool>
 </shelfDocument>

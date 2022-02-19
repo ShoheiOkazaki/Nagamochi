@@ -10,7 +10,7 @@ def main(nodes):
             nodeType = n.type().description()
 
             if not nodeType in expectedNodes:
-            	print "[nmCreateFetch] ==%s== is not unexpected node. Just brushed it off." % n.path()
+            	print("[nmCreateFetch] ==%s== is not unexpected node. Just brushed it off." % n.path())
             	pass
            
             else:

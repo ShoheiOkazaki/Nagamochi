@@ -19,7 +19,7 @@ def run(n,choice):
 		for n_out in n_outs:
 			from_n =  n_out.inputs().index(n)
 			n_out.setInput( from_n,nn )
-	print "[Nagamochi][Python][createCtrlReadFile4Cache] Create '%s' under '%s'." % ( nn.name(),n.name() )
+	print("[Nagamochi][Python][createCtrlReadFile4Cache] Create '%s' under '%s'." % ( nn.name(),n.name() ))
 
 
 def createTimeBlend(n):

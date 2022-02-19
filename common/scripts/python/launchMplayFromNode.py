@@ -43,7 +43,7 @@ def run_mplay(n,nparm):
         path = ".".join(pathSplit)
         #options = ' -f {} {} {}'.format(n.parm('f1').eval(),n.parm('f2').eval(),n.parm('f3').eval())    
     args = [mplay, fps, path]
-    #print args
+    #print(args)
     subprocess.Popen(args)
 
 
@@ -61,7 +61,7 @@ def run_rv(n,nparm):
     
     cmd = "%s %s %s %s" % (rv, fps, options, path)    
     #args = [rv, path]
-    #print args
+    #print(args)
     #subprocess.call(args)
     #subprocess.call( cmd.strip().split(" ")  )
     subprocess.Popen( cmd.strip().split(" ")  )

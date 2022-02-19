@@ -19,4 +19,4 @@ def set(parm,target):
     # return parm_Str_NodeRef(kwargs["parms"][0])
 
 def test(parm):
-        print parm
+    print(parm)

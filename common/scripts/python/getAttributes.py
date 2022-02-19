@@ -110,4 +110,4 @@ def buildList(N,inPt=True,inPr=True,inVx=True,inDe=True,inIntrinsics=False,addAt
 
     return attrs
 
-#print getIntrinsics(N)
+#print(getIntrinsics(N))

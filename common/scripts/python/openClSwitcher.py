@@ -16,7 +16,7 @@ def switchOpenCl(slnode,value):
             if dopnode.parm('opencl'):
                 if dopnode.parm('opencl').path() == dopnode.parm('opencl').getReferencedParm().path():
                     dopnode.parm('opencl').set(value)
-                    print dopnode.path()            
+                    print(dopnode.path())            
         t += 1
         i -= 1
 

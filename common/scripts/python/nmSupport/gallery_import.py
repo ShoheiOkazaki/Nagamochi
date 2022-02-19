@@ -1,6 +1,7 @@
 import hou
 import nmSupport.sop_dopimport as dopimport
-reload(dopimport)
+import importlib
+importlib.reload(dopimport)
 
 def run(N,doptype='pyro_smoke',pane=None):
 
@@ -9,7 +10,7 @@ def run(N,doptype='pyro_smoke',pane=None):
 	creatednodes_dop =[]
 	parent = None
 
-	print pane
+	print(pane)
 
 
 	if N:
@@ -20,7 +21,7 @@ def run(N,doptype='pyro_smoke',pane=None):
 		parent = pane.pwd()
 
 	if parent is None:
-		print 'Select any node'
+		print('Select any node')
 		return None
 
 
@@ -61,6 +62,6 @@ def run(N,doptype='pyro_smoke',pane=None):
 			cnode.setPosition(pane.cursorPosition())
 
 	else:
-		print 'failed'
+		print('failed')
 
 

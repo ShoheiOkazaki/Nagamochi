@@ -1,6 +1,7 @@
 import hou
 import nmSupport.sop_dopimport as dopimport
-reload(dopimport)
+import importlib
+importlib.reload(dopimport)
 
 def run(N,doptype='pyro_smoke',pane=None):
 
@@ -27,7 +28,7 @@ def run(N,doptype='pyro_smoke',pane=None):
 	nm_root = hou.getenv('NAGAMOCHI')
 
 	if nm_root is None:
-		print 1
+		print(1)
 
 	
 	# node_dop = parent.createNode('dopnet',mainName)
