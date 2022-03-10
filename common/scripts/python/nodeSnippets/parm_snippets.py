@@ -73,7 +73,7 @@ def getList(parms):
         # group
         elif parm.name()=='group' or parm.name().startswith('snippet') or parm.name()=='bindgroup' or parm.name()=='parmname':
             import getAttributes
-            reload(getAttributes)
+            #reload(getAttributes)
             inputs = parm.node().inputs()
             if node=='bind':
                 inputs = parm.node().parent().inputs()
