@@ -196,3 +196,58 @@ volumewrangle/snippet
     float ratio = detail(0, "rest2_ratio", 0);
     vector dualrest = lerp(v@rest, v@rest2, ratio);
     v@dualrest = dualrest;
+
+
+attribwrangle/snippet
+    [Nagamochi] Point Cloud - Base
+    // - options
+    float maxdistance = chf('serarch_radius');
+    int maxpoints = chi('number_of_points');
+
+
+    // - gen attr
+    int pt_index[];
+    float pt_dist[];
+    vector getV;
+
+
+    // == POINT CLOUD ==
+    int handle = pcopen(0, "P", @P, maxdistance, maxpoints);
+
+    while( pciterate(handle) )
+    {
+        //pcimport(handle, "P", getV);
+        
+        int get_pt;
+        pcimport(handle, "point.number", get_pt);
+        if (get_pt == @ptnum) continue;
+        append(pt_index, get_pt);
+        
+        float get_d;
+        pcimport(handle, "point.distance", get_d);
+        append(pt_dist, get_d);
+    }
+    pcclose(handle);
+
+
+    // == EXPORT ==
+    f[]@pt_dist = pt_dist;
+    i[]@pt_index = pt_index;
+
+attribwrangle/snippet
+    [Nagamochi] Point Cloud - Calc PointDensity
+    // - options
+    float maxdistance = chf('serarch_radius');
+    int maxpoints = chi('number_of_points');
+
+
+    // == POINT CLOUD ==
+    int handle = pcopen(0, "P", @P, maxdistance, maxpoints);
+    int get_nums = pcnumfound(handle);
+    pcclose(handle);
+
+
+    // == EXPORT ==
+    @prt_density = (get_nums-1.0)/(maxpoints-1);
+
+    if(chi('visualize')) @Cd = chramp('color',@prt_density);
