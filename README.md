@@ -17,7 +17,7 @@ Houdini 18.0 or Higher
 
 ### Installation
 1. Save this repository wherever you like.
-2. Copy the nagamochi.json file from the location used in step 1 to $HOME/Houdini18.5/packages, and change the contained paths to match the location chosen in step 1.
+2. Copy the Nagamochi.json file from the location used in step 1 to $HOME/Houdini19.5/packages, and change the contained paths to match the location chosen in step 1.
 
 ```json
 {
@@ -29,7 +29,7 @@ Houdini 18.0 or Higher
         	{
         		"value":
         			[        				
-                                        "$NAGAMOCHI/common",
+                        "$NAGAMOCHI/common",
         				"$NAGAMOCHI/houdini$HOUDINI_MAJOR_RELEASE.$HOUDINI_MINOR_RELEASE",                       
         			],
         	}

@@ -1,0 +1,18 @@
+{
+    "env" : 
+    [
+        {   "NAGAMOCHI" : "PLACE_TO_INSTALL"  },
+
+        {   "HOUDINI_PATH" :
+        	{
+        		"value":
+        			[        				
+                        "$NAGAMOCHI/common",                    
+        			],
+                "method" : "append"
+        	}
+        },
+        
+        {   "NM_CACHE_HOU" : "HIP_VAR/../caches"  },
+    ]
+}
