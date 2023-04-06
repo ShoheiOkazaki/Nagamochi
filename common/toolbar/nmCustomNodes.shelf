@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="nm_customnodes" label="Nagamochi_CustomNodes">
+    <memberTool name="nm_sop_timeshift"/>
+    <memberTool name="nm_sop_detailwrangle"/>
+    <memberTool name="nm_sop_isolate"/>
+    <memberTool name="nm_sop_computevel"/>
+  </toolshelf>
+
+  <tool name="nm_sop_timeshift" label="[Custom] Time Shift Hold" icon="SOP_timeshift">
+    <toolMenuContext name="network">
+      <contextOpType>Sop/timeshift</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Presets</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'timeshift', force_filter=True)
+node.setName('timeshift_hold0', unique_name=True)
+
+node.setUserData("descriptiveparm", 'frame')
+f = node.parm('frame').evalAsFloat()
+node.parm('frame').deleteAllKeyframes()
+node.parm('frame').set(f)]]></script>
+  </tool>
+
+  <tool name="nm_sop_detailwrangle" label="[Custom] Detail Wrangle" icon="SOP_attribwrangle">
+    <toolMenuContext name="network">
+      <contextOpType>Sop/attribwrangle</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Presets</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'attribwrangle', force_filter=True)
+node.setName('detailwrangle', unique_name=True)
+
+
+node.parm('class').set(0)]]></script>
+  </tool>
+
+  <tool name="nm_sop_computevel" label="[Custom] Compute Velocity" icon="SOP_trail">
+    <toolMenuContext name="network">
+      <contextOpType>Sop/trail</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Presets</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+# create node
+node = soptoolutils.genericTool(kwargs, 'trail', force_filter=True)
+node.setName('computevel1', unique_name=True)
+
+# set parms
+node.parm('result').set('velocity')
+node.parm('velapproximation').set('Central Difference')
+
+# set user data
+node.setUserData("descriptiveparm", 'velapproximation')]]></script>
+  </tool>
+
+  <tool name="nm_sop_isolate" label="[Custom] isolate" icon="SOP_blast">
+    <toolMenuContext name="network">
+      <contextOpType>Sop/blast</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Presets</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'blast', force_filter=True)
+node.setName('isolate', unique_name=True)
+
+
+node.parm('negate').set(1)]]></script>
+  </tool>
+</shelfDocument>
