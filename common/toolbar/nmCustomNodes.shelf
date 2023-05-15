@@ -10,6 +10,8 @@
     <memberTool name="nm_sop_detailwrangle"/>
     <memberTool name="nm_sop_isolate"/>
     <memberTool name="nm_sop_computevel"/>
+    <memberTool name="nm_sop_detailvop"/>
+    <memberTool name="nm_stickynote"/>
   </toolshelf>
 
   <tool name="nm_sop_timeshift" label="[Custom] Time Shift Hold" icon="SOP_timeshift">
@@ -73,5 +75,74 @@ node.setName('isolate', unique_name=True)
 
 
 node.parm('negate').set(1)]]></script>
+  </tool>
+
+  <tool name="nm_sop_detailvop" label="[Custom] Detail Vop" icon="SOP_attribvop">
+    <toolMenuContext name="network">
+      <contextOpType>Sop/attribvop</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Presets</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'attribvop', force_filter=True)
+node.setName('detailvop', unique_name=True)
+
+node.parm('bindclass').set('detail')]]></script>
+  </tool>
+
+  <tool name="nm_stickynote" label="[Custom] Sticky Note" icon="BUTTONS_network_sticky">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>CHOP</contextNetType>
+      <contextNetType>ROP</contextNetType>
+      <contextNetType>SHOP</contextNetType>
+      <contextNetType>COP2</contextNetType>
+      <contextNetType>VOP</contextNetType>
+      <contextNetType>VOPNET</contextNetType>
+      <contextNetType>DOP</contextNetType>
+      <contextNetType>TOP</contextNetType>
+      <contextNetType>LOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Presets</toolSubmenu>
+    <script scriptType="python"><![CDATA[import toolutils
+
+def build_note(scriptargs):
+    type_list = ['Heading 1', 'Heading 2', 'Heading 3', 'text']
+    size_list = [4, 2, 1, .5]
+    init_cds = [(0.976,0.78,0.263), (0.568,0.453,0.153), (0.313,0.250,0.08), (1,0.969,0.522)]
+    
+    pick_type = hou.ui.selectFromList(type_list)
+    if not len(pick_type):
+        return None
+    pick_size = size_list[pick_type[0]]
+        
+    pick_color = hou.ui.selectColor(initial_color=hou.Color(init_cds[pick_type[0]]))
+    if pick_color is None:
+        return None
+        
+    pick_text = hou.ui.readInput('Type anything...')
+    if not len(pick_text):
+        return None
+        
+    #print(pick_type,pick_size,pick_color,pick_text)
+    
+    dummy = toolutils.genericTool(scriptargs, 'null')
+    dummy_pos = dummy.position()
+    
+    note = dummy.parent().createStickyNote()
+    note.setPosition(dummy_pos)
+    note.setText(pick_text[1])
+    if pick_type[0] != 3: # Heading
+        note.setTextColor(pick_color)
+        note.setTextSize(pick_size)
+        note.setDrawBackground(0)
+        note.resize(hou.Vector2((10,pick_size)))
+    else: # text
+        note.setColor(pick_color)
+    
+    dummy.destroy()
+    
+build_note(kwargs)]]></script>
   </tool>
 </shelfDocument>
