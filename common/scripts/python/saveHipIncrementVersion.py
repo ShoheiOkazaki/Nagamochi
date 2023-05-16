@@ -9,7 +9,7 @@ def get_available_path(hip_full_path, increment='major', add_minor=True):
     pattern=r'([0-9]*)'
 
     hipfile = os.path.splitext(os.path.basename(hip_full_path))[0] 
-    versionType, version_sepalotor, versionMajor, versionMinor = get_curent_version(hipfile)
+    versionType, version_separator, versionMajor, versionMinor = get_current_version(hipfile)
 
     if increment == 'major':
         edit_target_majver = versionMajor
@@ -30,7 +30,7 @@ def get_available_path(hip_full_path, increment='major', add_minor=True):
 
     # else:
     #     message_w =  "[Nagamochi] Problem encountered matching version number - Exiting"
-    #     #rint message_w
+    #     #print message_w
     #     hou.ui.setStatusMessage(message_w)
     #     exit()
 
@@ -39,8 +39,8 @@ def get_available_path(hip_full_path, increment='major', add_minor=True):
 
     if len(versionMinor):
         newhip = hip_full_path.replace(old_majver_str, new_majver_str)
-        new_minver_str = '{}{}'.format(version_sepalotor,new_minver)  
-        newhip = newhip.replace('{}{}'.format(version_sepalotor,versionMinor), new_minver_str)
+        new_minver_str = '{}{}'.format(version_separator,new_minver)  
+        newhip = newhip.replace('{}{}'.format(version_separator,versionMinor), new_minver_str)
     else:
         if add_minor:
             newhip = hip_full_path.replace(old_majver_str, new_majver_str + '.001')
@@ -50,10 +50,10 @@ def get_available_path(hip_full_path, increment='major', add_minor=True):
     return newhip
 
 
-def get_curent_version(hipfile):
+def get_current_version(hipfile):
     versionSections = ""
     versionType = ""
-    version_sepalotor = '' 
+    version_separator = '' 
     versionMinor = ''
 
     if len(re.findall('_v(?=\d+)', hipfile)) > 0:
@@ -70,13 +70,13 @@ def get_curent_version(hipfile):
     find_seps = re.findall('\\.|_', versionSections[1])      
 
     if len(find_seps)==1:
-        version_sepalotor = find_seps[0]        
-        versionMajor = versionSections[1].split(version_sepalotor)[0]
-        versionMinor = versionSections[1].split(version_sepalotor)[1]
+        version_separator = find_seps[0]        
+        versionMajor = versionSections[1].split(version_separator)[0]
+        versionMinor = versionSections[1].split(version_separator)[1]
     else:
         versionMajor = versionSections[1]
 
-    return versionType, version_sepalotor, versionMajor, versionMinor
+    return versionType, version_separator, versionMajor, versionMinor
 
 
 def run():
@@ -87,11 +87,11 @@ def run():
     #print(hip_full_path,hipname,hipfile)
 
     has_minor = False
-    versionType, version_sepalotor, versionMajor, versionMinor = get_curent_version(hipfile)
+    versionType, version_separator, versionMajor, versionMinor = get_current_version(hipfile)
     #print(versionType, versionMajor,versionMinor)
 
     # ======== User Choice ========    
-    ui_botton = ("Major Up","Minor Up",'Cancel')
+    ui_button = ("Major Up","Minor Up",'Cancel')
     ui_text = hipname
     ui_text += '\n\nMajor: {}'.format(versionMajor)    
 
@@ -101,7 +101,7 @@ def run():
         
     choose = hou.ui.displayMessage(
                 ui_text, 
-                buttons = ui_botton, 
+                buttons = ui_button, 
                 severity = hou.severityType.Message, 
                 title = "[Nagamochi] Incremental Save"
             )
