@@ -12,6 +12,7 @@
     <memberTool name="nm_sop_computevel"/>
     <memberTool name="nm_sop_detailvop"/>
     <memberTool name="nm_stickynote"/>
+    <memberTool name="nm_nul_addparm"/>
   </toolshelf>
 
   <tool name="nm_sop_timeshift" label="[Custom] Time Shift Hold" icon="SOP_timeshift">
@@ -109,7 +110,7 @@ node.parm('bindclass').set('detail')]]></script>
 
 def build_note(scriptargs):
     type_list = ['Heading 1', 'Heading 2', 'Heading 3', 'text']
-    size_list = [4, 2, 1, .5]
+    size_list = [2, 1, .5, .25]
     init_cds = [(0.976,0.78,0.263), (0.568,0.453,0.153), (0.313,0.250,0.08), (1,0.969,0.522)]
     
     pick_type = hou.ui.selectFromList(type_list)
@@ -144,5 +145,33 @@ def build_note(scriptargs):
     dummy.destroy()
     
 build_note(kwargs)]]></script>
+  </tool>
+
+  <tool name="nm_nul_addparm" label="Null: Add parm" icon="SOP_null">
+    <script scriptType="python"><![CDATA[ns = hou.selectedNodes()
+
+item_script = """n = hou.pwd()
+dlist = n.dependents(include_children = False)
+
+result = []
+for d in dlist: 
+    if d.path()!=n.path():
+      result.extend([d.path(),d.path()])
+return result"""
+
+for n in ns:
+    if n.type().name()=='null' and not n.parm('dpend_list'):
+        parm_group = n.parmTemplateGroup()
+        parm_dependent = hou.StringParmTemplate(
+            'dpend_list',
+            'Dependents',
+            1,
+            string_type=hou.stringParmType.NodeReference,
+            item_generator_script=item_script, 
+            item_generator_script_language=hou.scriptLanguage.Python, 
+            menu_type=hou.menuType.StringReplace,
+            )
+        parm_group.append(parm_dependent)
+        n.setParmTemplateGroup(parm_group)]]></script>
   </tool>
 </shelfDocument>
