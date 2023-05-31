@@ -13,11 +13,11 @@ Nagamochi is a library of Digital Assets, Presets, Shelves and Scripts for SideF
 
 ### Requirement
 
-Houdini 18.0 or Higher
+Houdini 18.5 or Higher
 
 ### Installation
-1. Save this repository wherever you like.
-2. Copy the Nagamochi.json file from the location used in step 1 to $HOME/Houdini19.5/packages, and change the contained paths to match the location chosen in step 1.
+1. Save this repository wherever you want.
+2. Copy the Nagamochi.json file from the location you used in step 1 to $HOME/Houdini19.5/packages and change the contained paths to match the location you chose in step 1.
 
 ```json
 {
@@ -36,6 +36,8 @@ Houdini 18.0 or Higher
         },
         
         {   "NM_CACHE_HOU" : "HIP_VAR/../caches"  },
+
+        {   "NM_RV_PATH" : "C:/Program Files/ShotGrid/RV-2023.0.0/bin/rv.exe"  },
     ]
 }
 ```
@@ -49,7 +51,6 @@ https://vimeo.com/shohey
 	- nmGasAge https://vimeo.com/386939150
 
 ### Future Work
-- Python 3
 - Create a video that how to use tools
 - Clean up some scripts
 - Support Windows users. (I'm developing this tool on Linux(mint/CentOS).)
@@ -63,4 +64,4 @@ Nagamochi has two meanings, 「長持」 and 「長持ち」.
 長持 is the toolbox of old Japanese folklore.
 And 長持ち means 'long-lasting'.
 
-Nagamochi aims to be the toolbox that does not bound by Houdini version.
+Nagamochi aims to be the toolbox that is not tied to the Houdini version.
