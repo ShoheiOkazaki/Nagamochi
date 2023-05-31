@@ -14,5 +14,7 @@
         },
         
         {   "NM_CACHE_HOU" : "HIP_VAR/../caches"  },
+
+        {   "$NM_RV_PATH" : "C:/Program Files/ShotGrid/RV-2023.0.0/bin/rv.exe"  },
     ]
 }
