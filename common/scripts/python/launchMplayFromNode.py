@@ -1,36 +1,32 @@
 import subprocess
 import hou
 
+target_list = {
+        'ifd' : 'vm_picture',
+        'opengl': 'picture',
+        'arnold' : 'ar_picture',
+        'comp' : 'copoutput',
+        'ris' : 'ri_display_0',
+        'ffmpeg': 'ff_outputFile',
+        'nmFlipbook' : 'soho_diskfile'
+        }
+
+
 def launch(switch):   
 
-    n = hou.selectedNodes()[0]
+    ns = hou.selectedNodes()
 
-    if switch == False:
-        if n.type().name() == 'ifd':
-            run_mplay(n,'vm_picture')        
-        elif n.type().name() == 'opengl':
-            run_mplay(n,'picture')
-        elif n.type().name() == 'arnold':
-            run_mplay(n,'ar_picture')
-        elif n.type().name() == 'comp':
-            run_mplay(n,'copoutput')
-        elif n.type().name() == 'ris::22':
-            run_mplay(n,'ri_display_0')
+    for n in ns:
+        node_type_name = n.type().nameComponents()[2]
 
-    elif switch == True:
-        if n.type().name() == 'ifd':
-            run_rv(n,'vm_picture')        
-        elif n.type().name() == 'opengl':
-            run_rv(n,'picture')
-        elif n.type().name() == 'arnold':
-            run_rv(n,'ar_picture')
-        elif n.type().name() == 'comp':
-            run_rv(n,'copoutput')
-        elif n.type().name() == 'ris::22':
-            run_rv(n,'ri_display_0')
+        if switch == False:
+            run_mplay(n, target_list[node_type_name])       
 
-    # else:
-    #     hou.ui.displayMessage('Plz select Mantra ROP')
+        elif switch == True:
+            run_rv(n, target_list[node_type_name])  
+
+        # else:
+        #     hou.ui.displayMessage('Plz select Mantra ROP')
 
 def run_mplay(n,nparm):
     mplay = hou.expandString("$HFS") + "/bin/mplay"
@@ -49,7 +45,7 @@ def run_mplay(n,nparm):
 
 def run_rv(n,nparm):
 
-    rv = "/opt/rv-Linux-x86-64-7.1.0/bin/rv"
+    rv = hou.getenv("NM_RV_PATH")
     fps = '-fps {}'.format(hou.fps())
     options = ''
     path = n.parm(nparm).evalAsString()
@@ -59,11 +55,10 @@ def run_rv(n,nparm):
         path = ".".join(pathSplit)
         #options = '%d-%d' % (n.evalParm('f1'),n.evalParm('f2'))
     
-    cmd = "%s %s %s %s" % (rv, fps, options, path)    
+    cmd = "%s %s %s" % (rv, fps, path)    
     #args = [rv, path]
     #print(args)
     #subprocess.call(args)
     #subprocess.call( cmd.strip().split(" ")  )
     subprocess.Popen( cmd.strip().split(" ")  )
     #uvl.wait()
-#launch_mplay()
