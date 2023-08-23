@@ -251,3 +251,15 @@ attribwrangle/snippet
     @prt_density = (get_nums-1.0)/(maxpoints-1);
 
     if(chi('visualize')) @Cd = chramp('color',@prt_density);
+
+attribwrangle/snippet
+    [Nagamochi] Delte namespace from @path that comes from Maya.
+    string chunks[] = re_split('/', s@path);
+
+    string fixed_chunks[];
+    foreach (string chunk; chunks){
+        append(fixed_chunks, re_split(':',chunk)[-1]);
+        }
+        
+    s@path = join(fixed_chunks, '/');
+
