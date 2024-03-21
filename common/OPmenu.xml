@@ -4,7 +4,7 @@
 	<separatorItem></separatorItem>
 
 		<!-- Create Fetch  --> 
-		<scriptItem id="opmenu.mega_create_fetch">			
+		<scriptItem id="opmenu.nm_create_fetch">			
 			<context>
 			<expression><![CDATA[
 type = kwargs["node"].type().nameWithCategory()
@@ -13,7 +13,7 @@ if "Sop/nmFileCache" in type:return True
 return False
 ]]></expression>
 			</context>
-			<label>[Nagamochi] Create Fetch to ROP</label>
+			<label>[nm] Create Fetch to ROP</label>
 			<scriptCode>
 				<![CDATA[
 import nmCreateFetch
@@ -22,8 +22,26 @@ nmCreateFetch.main(nodes=[n])
 ]]></scriptCode>
 		</scriptItem>	
 			
+
+<scriptItem id="opmenu.nm_create_read">			
+			<context>
+			<expression><![CDATA[
+type = kwargs["node"].type().nameWithCategory()
+name = kwargs["node"].name()
+if "Sop/nmFileCache" in type:return True
+return False
+]]></expression>
+			</context>
+			<label>[nm] Create Read</label>
+			<scriptCode>
+				<![CDATA[
+import createReadFile
+createReadFile.run(kwargs["node"])
+]]></scriptCode>
+		</scriptItem>	
+
 		
-<subMenu id="opmenu.mega_create_ctrl_read">
+<subMenu id="opmenu.nm_create_ctrl_read">
 	<context>
 		<expression><![CDATA[
 type = kwargs["node"].type().nameWithCategory()
@@ -31,7 +49,7 @@ if type.lower().find('filecache') != -1:return True
 return False
 ]]></expression>
 		</context>
-	<label>[Nagamochi] Create control node for this ReadFile</label>
+	<label>[nm] Create control node for this ReadFile</label>
 
 	<scriptItem id="opmenu.nm_create_timeblend">
 		
@@ -63,7 +81,7 @@ if type.startswith("Sop/null") and name.startswith("TO_REN__"):return True
 return False
 ]]></expression>
 </context>
-	<label>[Nagamochi] Create Render Geo to Object</label>
+	<label>[nm] Create Render Geo to Object</label>
 	<scriptCode>
 		<![CDATA[
 n = kwargs["node"]
@@ -80,8 +98,21 @@ objmer_node.parm('xformtype').set(1)
 objmer_node.parm('objpath1').set(npath)
 ]]></scriptCode>
 		</scriptItem>
-	
 
+<scriptItem id = "opmenu.spare_node">
+<label>[nm] Add spare input</label>
+<expression><![CDATA[
+if len(hou.selectedNodes()) == 2:
+    return True
+return False
+]]></expression>	
+<scriptCode><![CDATA[
+import nodeSnippets.node_snippets as node_snippets
+#import nagamochi_utils
+#nagamochi_utils.reload_func(node_snippets)
+node_snippets.add_spare_input(kwargs)
+]]> </scriptCode>
+</scriptItem>
 
 	</menu>
 </menuDocument>

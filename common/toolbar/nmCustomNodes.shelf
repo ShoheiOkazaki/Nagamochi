@@ -9,6 +9,7 @@
     <memberTool name="nm_sop_timeshift"/>
     <memberTool name="nm_sop_detailwrangle"/>
     <memberTool name="nm_sop_isolate"/>
+    <memberTool name="nm_sop_colorbyattr"/>
     <memberTool name="nm_sop_computevel"/>
     <memberTool name="nm_sop_detailvop"/>
     <memberTool name="nm_stickynote"/>
@@ -148,9 +149,13 @@ build_note(kwargs)]]></script>
   </tool>
 
   <tool name="nm_nul_addparm" label="Null: Add parm" icon="SOP_null">
-    <script scriptType="python"><![CDATA[ns = hou.selectedNodes()
+    <script scriptType="python"><![CDATA[import hou
 
-item_script = """n = hou.pwd()
+# Get the currently selected nodes in Houdini
+selected_nodes = hou.selectedNodes()
+
+# Item generator script for the 'dpend_list' parameter
+item_generator_script = """n = hou.pwd()
 dlist = n.dependents(include_children = False)
 
 result = []
@@ -159,19 +164,45 @@ for d in dlist:
       result.extend([d.path(),d.path()])
 return result"""
 
-for n in ns:
-    if n.type().name()=='null' and not n.parm('dpend_list'):
-        parm_group = n.parmTemplateGroup()
+# Add a 'dpend_list' parameter to each selected 'null' type node without an existing 'dpend_list' parameter
+for node in selected_nodes:
+    if node.type().name() == 'null' and not node.parm('dpend_list'):
+        # Create a new StringParmTemplate for the 'dpend_list' parameter
         parm_dependent = hou.StringParmTemplate(
             'dpend_list',
             'Dependents',
             1,
             string_type=hou.stringParmType.NodeReference,
-            item_generator_script=item_script, 
-            item_generator_script_language=hou.scriptLanguage.Python, 
+            item_generator_script=item_generator_script,
+            item_generator_script_language=hou.scriptLanguage.Python,
             menu_type=hou.menuType.StringReplace,
-            )
+        )
+        
+        # Add the new parameter to the node's parameter group
+        parm_group = node.parmTemplateGroup()
         parm_group.append(parm_dependent)
-        n.setParmTemplateGroup(parm_group)]]></script>
+        node.setParmTemplateGroup(parm_group)
+]]></script>
+  </tool>
+
+  <tool name="nm_sop_colorbyattr" label="[Custom] Random color by attr" icon="SOP_color">
+    <toolMenuContext name="network">
+      <contextOpType>Sop/color</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Presets</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+# create node
+node = soptoolutils.genericTool(kwargs, 'color', force_filter=True)
+node.setName('__vis_attr_by_rand0', unique_name=True)
+node.setColor(hou.Color((0.094, 0.39, 0.69)))
+
+
+# set parms
+node.parm('deleteallcolorattribs').set(1)
+node.parm('colortype').set(4)
+
+# set user data
+node.setUserData("descriptiveparm", 'rampattribute')]]></script>
   </tool>
 </shelfDocument>

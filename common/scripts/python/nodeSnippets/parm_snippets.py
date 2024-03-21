@@ -88,10 +88,17 @@ def getList(parms):
                         "centerOwnVar","center own [ $CEX.. ]",  
                         "centerOwnExp","center own [ centroid(opinputpath('.',0),D_X).. ]",  
                         "centerUpExp","center up [ centroid(opinputpath('..',0),D_X).. ]",
-                        "centerPickExp", "center pick [ centroid('../????',D_X).. ]",  
+                        "centerSpareExp0", "center spare 0 [ centroid(-1, D_X).. ]",
+                        "centerSpareExp1", "center spare 1 [ centroid(-2, D_X).. ]",
+                        "centerSpareExp2", "center spare 2 [ centroid(-3, D_X).. ]",
+                        "centerSpareExp3", "center spare 3 [ centroid(-4, D_X).. ]",
+
                         "bboxOwn","bbox own [ bbox(opinputpath('.',0),D_XSIZE)]",  
                         "bboxUp","bbox up [ bbox(opinputpath('..',0),D_XSIZE)]",
-                        "bboxPick", "bbox pick [ bbox('../????',D_XSIZE).. ]", 
+                        "bboxSpare0", "bbox spare 0 [ bbox(-1, D_XSIZE).. ]", 
+                        "bboxSpare1", "bbox spare 1 [ bbox(-2, D_XSIZE).. ]", 
+                        "bboxSpare2", "bbox spare 2 [ bbox(-3, D_XSIZE).. ]", 
+                        "bboxSpare3", "bbox spare 3 [ bbox(-4, D_XSIZE).. ]", 
                         ]
 
     return menu_items
@@ -116,10 +123,16 @@ def setParms(parms,select):
                     "centerOwnVar":"$CEX", 
                     "centerOwnExp":"centroid(opinputpath('.',0),D_X)", 
                     "centerUpExp":"centroid(opinputpath('..',0),D_X)",
-                    "centerPickExp":"centroid(====,D_X)", 
+                    "centerSpareExp0":"centroid(-1, D_X)", 
+                    "centerSpareExp1":"centroid(-2, D_X)",
+                    "centerSpareExp2":"centroid(-3, D_X)",
+                    "centerSpareExp3":"centroid(-4, D_X)",
                     "bboxOwn":"bbox(opinputpath('.',0),D_XSIZE)", 
                     "bboxUp":"bbox(opinputpath('..',0),D_XSIZE)",
-                    "bboxPick":"bbox(====,D_XSIZE)"
+                    "bboxSpare0":"bbox(-1 ,D_XSIZE)",
+                    "bboxSpare1":"bbox(-2 ,D_XSIZE)",
+                    "bboxSpare3":"bbox(-3 ,D_XSIZE)",
+                    "bboxSpare4":"bbox(-4 ,D_XSIZE)",
                     }
 
     if select in valDict_str.keys():

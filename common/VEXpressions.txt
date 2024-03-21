@@ -2,7 +2,7 @@
 # Attribute Wrangle
 #
 attribwrangle/snippet
-	[Nagamochi] promote attr from same name
+    [nm] promote attr from same name
     if (inprimgroup(0,"inside",@primnum) == 1){
             int a = 0;
             while(1){
@@ -20,12 +20,12 @@ attribwrangle/snippet
 
 
 attribwrangle/snippet
-    [Nagamochi] name_index
+    [nm] name_index
     string uqs[] = uniquevals(0, 'prim',' name');
     i@name_index = find(uqs, s@name);
 
 attribwrangle/snippet
-    [Nagamochi] curveu
+    [nm] curveu
     //run over 'prim'
     float curvelength = primintrinsic(0, 'measuredperimeter', @primnum);
 
@@ -45,7 +45,7 @@ attribwrangle/snippet
     }
 
 attribwrangle/snippet
-    [Nagamochi] pct
+    [nm] pct
     //run over 'prim'
     int numPoints = primvertexcount(0,@primnum);
     int verNum    = primvertexcount(0,@primnum);
@@ -60,7 +60,7 @@ attribwrangle/snippet
         }
 
 attribwrangle/snippet
-    [Nagamochi] pop emit with linear motion of uniform acceleration
+    [nm] pop emit with linear motion of uniform acceleration
     //run over 'points'
     int pid = @ptnum;
     @age = rand(pid)*@Timeinc;
@@ -71,7 +71,7 @@ attribwrangle/snippet
 
 
 attribwrangle/snippet
-    [Nagamochi] move packed pivot to under the pieces
+    [nm] move packed pivot to under the pieces
     //run over 'points'
     float bounds[] = primintrinsic(0,'packedbounds',@primnum);
     vector new_pivot = set(@P.x, bounds[2], @P.z);
@@ -80,7 +80,7 @@ attribwrangle/snippet
     setprimintrinsic(0,'pivot',@primnum,new_pivot,'set');
 
 attribwrangle/snippet
-    [Nagamochi] push out of volume
+    [nm] push out of volume
     float d_vol_sample;
     vector d_vol_grad;
 
@@ -95,7 +95,7 @@ attribwrangle/snippet
         }
 
 attribwrangle/snippet
-    [Nagamochi] xyzDist
+    [nm] xyzDist
     // - init parms
     int hitprim;
     vector hitprimuv;
@@ -120,7 +120,7 @@ attribwrangle/snippet
 
 
 attribwrangle/snippet
-    [Nagamochi] create random float val using ramp
+    [nm] create random float val using ramp
     float seed = chf('seed');
     float dmin = chf('destmin');
     float dmax = chf('destmax');
@@ -135,12 +135,12 @@ attribwrangle/snippet
     f@pscale = _value;
 
 attribwrangle/snippet
-    [Nagamochi] random orient
+    [nm] random orient
     vector usamplerw = rand(@ptnum);
     p@orient = sample_orientation_cone({ 1, 0, 0, 0 }, radians(180), usamplerw);
 
 attribwrangle/snippet
-    [Nagamochi] set name for instancing copy
+    [nm] set name for instancing copy
     string class = 'prim';
     string attr = 'name';
 
@@ -153,12 +153,12 @@ attribwrangle/snippet
 
 
 attribwrangle/snippet
-    [Nagamochi] decayed pscale by nage
+    [nm] decayed pscale by nage
     @pscale *= chramp('nage',1.0-@nage);
 
 
 attribwrangle/snippet
-    [Nagamochi] get value from volume
+    [nm] get value from volume
     f@vol_density     = volumesample(1,'density',@P);
     f@vol_temperature = volumesample(1,'temperature',@P);
     f@vol_heat        = volumesample(1,'heat',@P);
@@ -170,11 +170,11 @@ attribwrangle/snippet
     //v@vol_rest = volumesamplev(1,'rest',@P);
 
 attribwrangle/snippet
-    [Nagamochi] set objid from dopimport
+    [nm] set objid from dopimport
     i@objid = atoi(split(s@dopobject,':')[1]);
 
 attribwrangle/snippet
-    [Nagamochi] set match attrib for fuse
+    [nm] set match attrib for fuse
     // - get nearpoints
     string grp = sprintf('@cluster_name!=%s',s@cluster_name);
     int npts[] = nearpoints(0,grp,@P,0.00001);
@@ -192,14 +192,14 @@ attribwrangle/snippet
     //i[]@npts = sort(npts);
 
 volumewrangle/snippet
-    [Nagamochi] Blend rest aand rest2
+    [nm] Blend rest aand rest2
     float ratio = detail(0, "rest2_ratio", 0);
     vector dualrest = lerp(v@rest, v@rest2, ratio);
     v@dualrest = dualrest;
 
 
 attribwrangle/snippet
-    [Nagamochi] Point Cloud - Base
+    [nm] Point Cloud - Base
     // - options
     float maxdistance = chf('serarch_radius');
     int maxpoints = chi('number_of_points');
@@ -235,7 +235,7 @@ attribwrangle/snippet
     i[]@pt_index = pt_index;
 
 attribwrangle/snippet
-    [Nagamochi] Point Cloud - Calc PointDensity
+    [nm] Point Cloud - Calc PointDensity
     // - options
     float maxdistance = chf('serarch_radius');
     int maxpoints = chi('number_of_points');
@@ -253,7 +253,7 @@ attribwrangle/snippet
     if(chi('visualize')) @Cd = chramp('color',@prt_density);
 
 attribwrangle/snippet
-    [Nagamochi] Delte namespace from @path that comes from Maya.
+    [nm] Delte namespace from @path that comes from Maya.
     string chunks[] = re_split('/', s@path);
 
     string fixed_chunks[];
@@ -263,3 +263,7 @@ attribwrangle/snippet
         
     s@path = join(fixed_chunks, '/');
 
+attribwrangle/snippet
+    [nm] Remove primitives if attribute mismatch
+    int match = findattribval(1, 'point', 'name', s@name);
+    match<0 ? removeprim(0, @primnum, 1): 0;
