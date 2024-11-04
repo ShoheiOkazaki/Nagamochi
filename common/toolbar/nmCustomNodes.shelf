@@ -14,6 +14,7 @@
     <memberTool name="nm_sop_detailvop"/>
     <memberTool name="nm_stickynote"/>
     <memberTool name="nm_nul_addparm"/>
+    <memberTool name="nm_sop_fetch"/>
   </toolshelf>
 
   <tool name="nm_sop_timeshift" label="[Custom] Time Shift Hold" icon="SOP_timeshift">
@@ -204,5 +205,42 @@ node.parm('colortype').set(4)
 
 # set user data
 node.setUserData("descriptiveparm", 'rampattribute')]]></script>
+  </tool>
+
+  <tool name="nm_sop_fetch" label="[Custom] send to fetch" icon="LOP_fetch">
+    <toolMenuContext name="network">
+      <contextOpType>Sop/null</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Nagamochi Presets</toolSubmenu>
+    <script scriptType="python"><![CDATA[import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'null', force_filter=True)
+node.setName('_SEND_TYPENAME', unique_name=True)
+node.setColor(hou.Color(0,0,0))
+node.setUserData('nodeshape','squared')
+
+parm_group = node.parmTemplateGroup()
+
+folder_main = hou.FolderParmTemplate("send_fetch", "Sender")
+
+#Button
+button_script = '''node = hou.pwd()
+n_pos = node.position()
+pos = n_pos - hou.Vector2(0,1)
+n_name = node.name().replace('_SEND_','')
+
+fetch = node.parent().createNode( 'object_merge', f'_FETCH_{n_name}.0' )
+fetch.setPosition( pos )
+fetch.setColor(hou.Color(0,0,0))
+fetch.parm('objpath1').set(node.path())
+'''
+button_submit = hou.ButtonParmTemplate("nm_create_fetch", "Create Fetch")
+#button_submit.setJoinWithNext(True)
+button_submit.setScriptCallback(button_script)
+button_submit.setScriptCallbackLanguage(hou.scriptLanguage.Python)
+folder_main.addParmTemplate(button_submit)
+
+parm_group.append(folder_main)
+node.setParmTemplateGroup(parm_group)]]></script>
   </tool>
 </shelfDocument>
